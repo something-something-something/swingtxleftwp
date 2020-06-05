@@ -1,0 +1,215 @@
+/*
+Theme Name: SwingTxLeft
+Author: Eric Krebs
+Description: a theme
+*/
+
+body,div,header,nav{
+	margin:0;
+	padding:0;
+}
+
+body{
+	
+	font-family:sans-serif;
+}
+
+a{
+	color:#34C1F0;;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+header{
+	background-color: rgb(0,0,0);
+	display:flex;
+	justify-content: space-around;
+	width:100%;
+	flex-wrap: wrap;
+	/* line-height:normal; */
+}
+
+header .site-logo{
+	display:inline-block;
+	
+}
+
+header .site-logo a{
+	/* height:8rem; */
+}
+header .site-logo img{
+	height:5rem;
+	
+	object-fit:contain;
+	padding:0;
+	
+}
+header nav{
+	display: block;;
+	
+	
+}
+
+header nav ul{
+	display:flex;;
+	padding:0;
+	margin:0;
+	list-style-type: none;
+}
+header nav ul li{
+	padding:0;
+	margin:0;
+	display:inline-block;
+	
+}
+
+header nav ul li a{
+	
+	display:inline-block;
+	font-size: 1.5rem;
+	/* will-change:padding,border; */
+	padding:1.75rem 1.5rem 0.75rem 1.5rem;
+	/* line-height:2rem; */
+	background-color:black;
+	border-color: #ED5B67;
+
+	border-color: #000000;
+	border-style:solid;
+	color:rgb(255, 255, 255);
+
+	color:#34C1F0;
+	margin:0 0 0.5rem 0;
+	border-width: 0rem 0rem 0rem 0rem;
+	border-bottom-width:0.5rem;
+	transition: padding 0.5s linear, border 0.5s linear, margin 0.5s linear, background-color 0.5s linear;
+
+}
+header nav ul li:nth-child(2n+1) a{
+	color:#ED5B67
+}
+
+header nav ul li:nth-child(2n+1) a:hover{
+	border-color: #34C1F0;
+	
+}
+
+header nav ul li a:hover{
+	text-decoration: none;
+	border-color: #ED5B67;
+	/* margin-bottom:0rem;
+	border-bottom-width:1.5rem; */
+	
+}
+
+
+.feature-img{
+	position:relative;
+	padding:2rem 0 2rem 0;
+	margin:0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	width:100%;
+	display:block;
+	min-height:60vh;
+	color:rgb(255, 255, 255);
+	border-width: 0rem 0rem 1rem 0rem;
+	border-style:solid;
+	border-color: #ED5B67;
+}
+
+
+.feature-img .mission-widget{
+	/* background-color: rgba(0,0,0,0.8); */
+	background-color: rgba(255, 255, 255,0.9);
+	/* background-color: #ED5B67;
+	background-color: rgb(0,0,0);  */
+	/* border-radius: 2rem; */
+	color:rgb(0,0,0);
+	border-color: #ED5B67;
+	border-left-color:#34C1F0 ;
+	border-top-color:#34C1F0 ;
+	border-style:solid;
+	border-radius: 2rem;
+	
+	border-width: 0.5rem;
+	max-width:40rem;
+	padding:2rem;
+	margin:1rem auto 2rem auto;
+}
+.feature-img .mission-widget h2{
+	text-align: center;
+	padding: 0;
+	margin:0;
+}
+
+
+
+.feature-img .email-widget{
+	text-align: center;
+	border-radius: 2rem;
+
+	max-width:40rem;
+	padding:2rem;
+	margin:1rem auto 3rem auto;
+}
+
+.pageTitle{padding: 2rem;
+	display:block;
+	margin:0;
+	background-color: rgba(0,0,0,0.8);
+	text-align:center;
+	position:absolute;
+	width:100%;
+	padding:2rem 0 2rem 0;
+	bottom:0;
+}
+main{
+	display:block;
+	margin:0 auto 0 auto;
+	max-width:80rem;
+
+
+	padding:3rem;
+}
+
+footer{
+	color: rgb(255, 255, 255);
+	padding: 4rem 4rem;
+	margin: 10vh 0 0 0;
+	min-height: 20vh;
+	background-color:rgb(0,0,0);
+	border-width: 1rem 0rem 0rem 0rem;
+	border-style:solid;
+	border-color: #34C1F0;
+}
+footer nav ul{
+	text-align: center;
+	padding:0;
+	margin:0;
+	list-style-type: none;
+	display: block;
+
+
+}
+footer nav ul li{
+	padding:0;
+	margin:0;
+	display: inline-block;
+}
+footer nav ul li a{
+	padding:0 1rem 0 1rem ;
+	border-width: 0rem 0.3rem 0rem 0rem;
+	border-style:solid;
+	border-color: #ED5B67;
+	display: inline-block;
+}
+footer nav ul li:last-child a{
+	padding:0 1rem 0 1rem ;
+	border-width: 0rem 0rem 0rem 0rem;
+	border-style:solid;
+	border-color: #ED5B67;
+	display: inline-block;
+}
