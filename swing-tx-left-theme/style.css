@@ -10,7 +10,9 @@ body,div,header,nav{
 }
 
 body{
-	
+	display:flex;
+	flex-direction: column;
+	min-height:100vh;
 	font-family:sans-serif;
 }
 
@@ -27,7 +29,7 @@ header{
 	justify-content: space-around;
 	width:100%;
 	flex-wrap: wrap;
-	/* line-height:normal; */
+	line-height:1;
 }
 
 header .site-logo{
@@ -35,9 +37,7 @@ header .site-logo{
 	
 }
 
-header .site-logo a{
-	/* height:8rem; */
-}
+
 header .site-logo img{
 	height:5rem;
 	
@@ -46,7 +46,7 @@ header .site-logo img{
 	
 }
 header nav{
-	display: block;;
+	display: flex;;
 	
 	
 }
@@ -70,7 +70,7 @@ header nav ul li a{
 	font-size: 1.5rem;
 	/* will-change:padding,border; */
 	padding:1.75rem 1.5rem 0.75rem 1.5rem;
-	/* line-height:2rem; */
+
 	background-color:black;
 	border-color: #ED5B67;
 
@@ -112,12 +112,15 @@ header nav ul li a:hover{
 	background-position: center;
 	background-attachment: fixed;
 	width:100%;
-	display:block;
-	min-height:60vh;
+	display:flex;
+	justify-content: center;
+	flex-direction: column;
+	min-height:40vh;
 	color:rgb(255, 255, 255);
 	border-width: 0rem 0rem 1rem 0rem;
 	border-style:solid;
 	border-color: #ED5B67;
+	
 }
 
 
@@ -136,7 +139,6 @@ header nav ul li a:hover{
 	/* border-radius: 2rem; */
 	border-radius: 0.5rem;
 	/* border-width: 0.5rem; */
-	
 	transform: rotateZ(4deg) rotateY(1deg);
 	width:40rem;
 	max-width: calc(80vw - 4rem - 4rem);
@@ -163,7 +165,7 @@ header nav ul li a:hover{
 
 	max-width:40rem;
 	padding:2rem;
-	margin:1rem auto 3rem auto;
+	margin:0 auto 5rem auto;
 }
 
 .pageTitle{padding: 2rem;
@@ -181,19 +183,20 @@ main{
 	margin:0 auto 0 auto;
 	max-width:80rem;
 
-
+	flex-grow: 1;
 	padding:3rem;
 }
 
 footer{
 	color: rgb(255, 255, 255);
 	padding: 4rem 4rem;
-	margin: 10vh 0 0 0;
-	min-height: 20vh;
+	margin: 5rem 0 0 0;
+	/* min-height: 20vh; */
 	background-color:rgb(0,0,0);
 	border-width: 1rem 0rem 0rem 0rem;
 	border-style:solid;
 	border-color: #34C1F0;
+
 }
 footer nav ul{
 	text-align: center;

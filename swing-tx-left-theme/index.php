@@ -30,11 +30,11 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:linear-gradient(#34C1F099,#ED5B6799), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
+					?><div class="feature-img" style="background-image:linear-gradient(#34C1F099 -5rem,#ED5B6799), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
 					
 				}
 				else{
-					?><div class="feature-img" style="background-image: linear-gradient(#34C1F0,#ED5B67);"><?php
+					?><div class="feature-img" style="background-image: linear-gradient(#34C1F0 -5rem,#ED5B67);"><?php
 				}
 					
 			
