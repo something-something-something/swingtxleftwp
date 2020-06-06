@@ -123,21 +123,31 @@ header nav ul li a:hover{
 
 .feature-img .mission-widget{
 	/* background-color: rgba(0,0,0,0.8); */
-	background-color: rgba(255, 255, 255,0.9);
+	/* background-color: rgba(255, 255, 255,0.9); */
+	background-color: #ED5B67;
 	/* background-color: #ED5B67;
 	background-color: rgb(0,0,0);  */
 	/* border-radius: 2rem; */
 	color:rgb(0,0,0);
-	border-color: #ED5B67;
+	/* border-color: #ED5B67;
 	border-left-color:#34C1F0 ;
 	border-top-color:#34C1F0 ;
-	border-style:solid;
-	border-radius: 2rem;
+	border-style:solid; */
+	/* border-radius: 2rem; */
+	border-radius: 0.5rem;
+	/* border-width: 0.5rem; */
 	
-	border-width: 0.5rem;
-	max-width:40rem;
+	transform: rotateZ(4deg) rotateY(1deg);
+	width:40rem;
+	max-width: calc(80vw - 4rem - 4rem);
+	box-shadow: 2rem 2rem 1rem 0 rgb(0,0,0);
+	transition: transform 0.5s;
 	padding:2rem;
 	margin:1rem auto 2rem auto;
+}
+
+.feature-img .mission-widget:hover{
+	transform: rotateZ(0deg);
 }
 .feature-img .mission-widget h2{
 	text-align: center;
