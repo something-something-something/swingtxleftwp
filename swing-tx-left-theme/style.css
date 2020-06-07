@@ -20,6 +20,7 @@ Description: a theme
 
 	--link-color:#0461F0;
 	--link-color-for-logo-pink-background:#0491F0;;
+	--link-color-for-logo-pink-background:var(--link-color);
 
 }
 
@@ -254,7 +255,8 @@ header nav ul li:nth-child(2n+1) a:hover{
 	left:0;
 	content: "";
 	width: 100vw;
-
+	border-width: 0;
+	outline: none;
 	backdrop-filter: blur(5vmin);
 	
 	background-color: rgba(var(--site-white-red),var(--site-white-green),var(--site-white-blue),0.3);
