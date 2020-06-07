@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
+		
+
+
 		<?php
 		
 			wp_head();
@@ -11,16 +14,17 @@
 
 	<body>
 
-		<header><div class="site-logo">
+		<header id="main-header"><div class="site-logo">
 			<?php
 			the_custom_logo();
 			?>
 			</div>
-			
+				<button id="hamburger-button">Menu</button>
 				<?php 
 				wp_nav_menu(array(
 					'theme_location'=>'swtxl-main-menu',
 					'container'=>'nav',
+					'container_id'=>'main-menu'
 				)); 
 				?>
 			
