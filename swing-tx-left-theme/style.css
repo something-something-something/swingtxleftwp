@@ -344,8 +344,10 @@ footer nav ul{
 	padding:0;
 	margin:0;
 	list-style-type: none;
-	display: block;
-
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	
 
 }
 footer nav ul li{
@@ -354,17 +356,10 @@ footer nav ul li{
 	display: inline-block;
 }
 footer nav ul li a{
-	padding:0 1rem 0 1rem ;
-	border-width: 0rem 0.1rem 0rem 0rem;
-	border-style:solid;
+	padding: 1rem;
+	/* border-width: 0rem 0.1rem 0rem 0.1rem;
+	border-style:solid; */
 	border-color: var(--logo-pink);
 	display: inline-block;
 }
 
-footer nav ul li:first-child a{
-	padding:0 1rem 0 1rem ;
-	border-width: 0rem 0.1rem 0rem 0.1rem;
-	border-style:solid;
-	border-color: var(--logo-pink);
-	display: inline-block;
-}
