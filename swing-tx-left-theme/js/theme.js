@@ -24,9 +24,10 @@ function hamburgerMenuHideAndShow(){
 }
 
 function hamburgerBackdropElement(){
-	let backDrop=document.createElement('div');
+	let backDrop=document.createElement('button');
 	backDrop.classList.add('hamburger-backdrop');
 	backDrop.addEventListener('click',hamburgerMenuHideAndShow);
+	backDrop.setAttribute('aria-label','Close');
 	return backDrop;
 }
 

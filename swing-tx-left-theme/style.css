@@ -17,6 +17,10 @@ Description: a theme
 	--site-white-green:245;
 	--site-white-blue:255;
 	--site-white:rgb(var(--site-white-red),var( --site-white-green), var(--site-white-blue));
+
+	--link-color:#0461F0;
+	--link-color-for-logo-pink-background:#0491F0;;
+
 }
 
 
@@ -61,7 +65,7 @@ body{
 
 
 a{
-	color:var(--logo-blue);
+	color:var(--link-color);
 	text-decoration: none;
 }
 a:hover{
@@ -152,7 +156,28 @@ header nav.hamnav{
 	overflow-y:auto;
 	box-shadow: 2vmin 2vmin 0rem 0 var(--logo-blue), -2vmin -2vmin 0rem 0 var(--logo-pink);
 	/* border-radius: 1rem; */
+
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-name:  hamburger-menu-appear;
 }
+@keyframes hamburger-menu-appear{
+	0%{
+		margin-left:100vh ;
+		box-shadow: 0vmin 0vmin 0rem 0 var(--logo-blue), 0vmin 0vmin 0rem 0 var(--logo-pink);
+	}
+	40%{
+		margin-left: 0;
+		box-shadow: 0vmin 0vmin 0rem 0 var(--logo-blue), 0vmin 0vmin 0rem 0 var(--logo-pink);
+	}
+	100%{
+		box-shadow: 2vmin 2vmin 0rem 0 var(--logo-blue), -2vmin -2vmin 0rem 0 var(--logo-pink);
+	}
+}
+
+
+
+
 header nav ul{
 	display:flex;;
 	justify-content: space-between;
@@ -198,9 +223,8 @@ header nav.hamnav ul li a{
 	text-align: center;
 	display:block;
 	font-size: 1rem;
-	padding:0.5rem;
-	border-bottom-width: 0.25rem;
-	border-bottom-width:0 ;
+	padding:0.5rem 0.3rem;
+	border-width:0 0.2rem;
 	/* padding-top:1.25rem;
 	padding-bottom: 0.25rem; */
 	
@@ -236,12 +260,26 @@ header nav ul li:nth-child(2n+1) a:hover{
 	background-color: rgba(var(--site-white-red),var(--site-white-green),var(--site-white-blue),0.3);
 	/* background-color: var(--logo-blue); */
 	height: 100vh;
+
+	animation-name: hamburger-backdrop-fade;
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
 }
+
 @supports not (backdrop-filter:blur(5vmin)){
 		.hamburger-backdrop{	
 			-webkit-backdrop-filter: blur(5vmin);
 		}
 	}
+
+@keyframes hamburger-backdrop-fade{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1; 
+	}
+}
 .feature-img{
 	position:relative;
 	padding:2rem 0 2rem 0;
@@ -297,6 +335,10 @@ header nav ul li:nth-child(2n+1) a:hover{
 	margin:0;
 }
 
+.feature-img .mission-widget a{
+	color:var(--link-color-for-logo-pink-background);
+}
+
 
 
 .feature-img .email-widget{
@@ -338,6 +380,10 @@ footer{
 	border-style:solid;
 	border-color: var(--logo-blue);
 
+}
+
+footer a{
+	color:var(--logo-blue);
 }
 footer nav ul{
 	text-align: center;
