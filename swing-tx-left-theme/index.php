@@ -19,7 +19,7 @@
 			the_custom_logo();
 			?>
 			</div>
-				<button id="hamburger-button">Menu</button>
+				<button id="hamburger-button"></button>
 				<?php 
 				wp_nav_menu(array(
 					'theme_location'=>'swtxl-main-menu',
