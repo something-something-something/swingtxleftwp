@@ -16,7 +16,7 @@ Description: a theme
 	--site-white-red:245;
 	--site-white-green:245;
 	--site-white-blue:255;
-	--site-white:rgb(--site-white-red, --site-white-green, --site-white-blue);
+	--site-white:rgb(var(--site-white-red),var( --site-white-green), var(--site-white-blue));
 }
 
 
@@ -114,9 +114,13 @@ header #hamburger-button{
 	display: none;
 	background-color: transparent;
 	outline: none;
-	color: transparent;
+	color: var(--site-white);
+	/* text-shadow:0 0 0.5rem var(--site-white) ; */
+	font-size: 1rem;
+	padding: 0;
+	margin: 0;
 	border-width: 0;
-	max-width:20vh;
+	max-width:20vw;
 	width:3rem;
 	content:"";
 	overflow: hidden;
@@ -137,14 +141,14 @@ header nav{
 
 header nav.hamnav{
 	position: fixed;
-	top:calc(5rem  + 2vmin + 5vh );
+	top:calc(3vh + 3vmin );
 	display: block;
-	left:calc( 5vw  + 2vmin);
+	left:calc( 10vw  + 2vmin);
 	z-index:999999;
 	background-color: var(--site-black);
 	padding: 1rem;
-	width: calc( 90vw - 2rem - 4vmin);
-	max-height:calc(90vh - 1rem - 5rem - 2rem - 2vmin);
+	width: calc( 80vw - 2rem - 4vmin);
+	max-height:calc(94vh - 2rem - 6vmin);
 	overflow-y:auto;
 	box-shadow: 2vmin 2vmin 0rem 0 var(--logo-blue), -2vmin -2vmin 0rem 0 var(--logo-pink);
 	/* border-radius: 1rem; */
@@ -194,7 +198,9 @@ header nav.hamnav ul li a{
 	text-align: center;
 	display:block;
 	font-size: 1rem;
+	padding:0.5rem;
 	border-bottom-width: 0.25rem;
+	border-bottom-width:0 ;
 	/* padding-top:1.25rem;
 	padding-bottom: 0.25rem; */
 	
@@ -224,12 +230,18 @@ header nav ul li:nth-child(2n+1) a:hover{
 	left:0;
 	content: "";
 	width: 100vw;
+
 	backdrop-filter: blur(5vmin);
+	
 	background-color: rgba(var(--site-white-red),var(--site-white-green),var(--site-white-blue),0.3);
 	/* background-color: var(--logo-blue); */
 	height: 100vh;
 }
-
+@supports not (backdrop-filter:blur(5vmin)){
+		.hamburger-backdrop{	
+			-webkit-backdrop-filter: blur(5vmin);
+		}
+	}
 .feature-img{
 	position:relative;
 	padding:2rem 0 2rem 0;
@@ -305,7 +317,7 @@ header nav ul li:nth-child(2n+1) a:hover{
 	width:100%;
 	padding:2rem 0 2rem 0;
 	bottom:0;
-	color:var(--logo-blue);
+	/* color:var(--logo-blue); */
 }
 main{
 	display:block;
