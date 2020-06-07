@@ -13,8 +13,10 @@ Description: a theme
 	--site-black-blue:25;
 	--site-black:rgb(var(--site-black-red),var(--site-black-green),var(--site-black-blue));
 
-
-	--site-white:rgb(245, 245, 255);
+	--site-white-red:245;
+	--site-white-green:245;
+	--site-white-blue:255;
+	--site-white:rgb(--site-white-red, --site-white-green, --site-white-blue);
 }
 
 
@@ -110,10 +112,20 @@ header .site-logo img{
 
 header #hamburger-button{
 	display: none;
+	background-color: transparent;
+	outline: none;
+	color: transparent;
+	border-width: 0;
+	max-width:20vh;
+	width:3rem;
+	content:"";
+	overflow: hidden;
+	background-image:linear-gradient(var(--site-black) 25%,var(--logo-blue)25% 35%,var(--site-black)35% 45%,var(--logo-pink) 45% 55%,var(--site-black) 55% 65%,var(--logo-blue) 65% 75%,var(--site-black)75% 100%) ;
 }
 
 header #hamburger-button.hamburger-button-show{
 	display:block;
+
 }
 
 header nav{
@@ -124,16 +136,18 @@ header nav{
 
 
 header nav.hamnav{
-	position: absolute;
-	top:20vh;
+	position: fixed;
+	top:calc(5rem  + 2vmin + 5vh );
 	display: block;
-	left:5vw;
+	left:calc( 5vw  + 2vmin);
 	z-index:999999;
 	background-color: var(--site-black);
-	
-	width: 90vw;
-	max-height: 80vh;
+	padding: 1rem;
+	width: calc( 90vw - 2rem - 4vmin);
+	max-height:calc(90vh - 1rem - 5rem - 2rem - 2vmin);
 	overflow-y:auto;
+	box-shadow: 2vmin 2vmin 0rem 0 var(--logo-blue), -2vmin -2vmin 0rem 0 var(--logo-pink);
+	/* border-radius: 1rem; */
 }
 header nav ul{
 	display:flex;;
@@ -173,9 +187,19 @@ header nav ul li a{
 	margin:0 0 0.5rem 0;
 	border-width: 0rem 0rem 0rem 0rem;
 	border-bottom-width:0.5rem;
-	transition: border 0.5s linear, background-color 0.5s linear;
+	transition: border-color 0.5s linear, background-color 0.5s linear;
 
 }
+header nav.hamnav ul li a{
+	text-align: center;
+	display:block;
+	font-size: 1rem;
+	border-bottom-width: 0.25rem;
+	/* padding-top:1.25rem;
+	padding-bottom: 0.25rem; */
+	
+}
+
 header nav ul li:nth-child(2n+1) a{
 	color:var(--logo-pink);
 }
@@ -200,7 +224,9 @@ header nav ul li:nth-child(2n+1) a:hover{
 	left:0;
 	content: "";
 	width: 100vw;
-	background-color: rgba(var(--site-black-red),var(--site-black-green),var(--site-black-blue),0.5);
+	backdrop-filter: blur(5vmin);
+	background-color: rgba(var(--site-white-red),var(--site-white-green),var(--site-white-blue),0.3);
+	/* background-color: var(--logo-blue); */
 	height: 100vh;
 }
 
@@ -279,6 +305,7 @@ header nav ul li:nth-child(2n+1) a:hover{
 	width:100%;
 	padding:2rem 0 2rem 0;
 	bottom:0;
+	color:var(--logo-blue);
 }
 main{
 	display:block;
@@ -316,14 +343,15 @@ footer nav ul li{
 }
 footer nav ul li a{
 	padding:0 1rem 0 1rem ;
-	border-width: 0rem 0.1rem 0rem 0.1rem;
+	border-width: 0rem 0.1rem 0rem 0rem;
 	border-style:solid;
 	border-color: var(--logo-pink);
 	display: inline-block;
 }
-footer nav ul li:last-child a{
+
+footer nav ul li:first-child a{
 	padding:0 1rem 0 1rem ;
-	border-width: 0rem 0.1rem 0rem 0rem;
+	border-width: 0rem 0.1rem 0rem 0.1rem;
 	border-style:solid;
 	border-color: var(--logo-pink);
 	display: inline-block;
