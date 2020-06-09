@@ -76,12 +76,23 @@ function splitEventsIntoTimeSlot(events){
 
 //form
 async function createSwingLeftEventsControlForm(data,formContainer,eventsContainer){
+
+	let filterHideBox=document.createElement('details');
+	filterHideBox.classList.add('swingtx-left-hide-box-filter-form');
+	let filterHideBoxSummary=elementWithText('summary','Filters');
+	filterHideBox.appendChild(filterHideBoxSummary);
+
 	let controlForm=document.createElement('form');
 	
-	controlForm.appendChild(writeFilterByTypeControls(data));
-	controlForm.appendChild(writeFilterByVirtualStatusControls(data));
-	controlForm.appendChild( writeZipCodeFilterControls());
-	controlForm.appendChild(writeFilterByDateControls());
+	let filterOptionsContainer=document.createElement('div');
+	filterOptionsContainer.classList.add('swing-tx-left-filter-form-options');
+
+	filterOptionsContainer.appendChild(writeFilterByTypeControls(data));
+	filterOptionsContainer.appendChild(writeFilterByVirtualStatusControls(data));
+	filterOptionsContainer.appendChild( writeZipCodeFilterControls());
+	filterOptionsContainer.appendChild(writeFilterByDateControls());
+
+	controlForm.appendChild(filterOptionsContainer);
 
 	let resetButton=document.createElement('input');
 	resetButton.setAttribute('type','reset');
@@ -105,6 +116,7 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 
 
 	let fieldsetForButtons=document.createElement('fieldset');
+	fieldsetForButtons.classList.add('swing-tx-left-filter-form-control-buttons');
 
 
 	fieldsetForButtons.appendChild(resetButton);
@@ -115,7 +127,9 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 	controlForm.appendChild(errorBar);
 
 
-	formContainer.appendChild(controlForm);
+	filterHideBox.appendChild(controlForm);
+
+	formContainer.appendChild(filterHideBox);
 
 
 }
