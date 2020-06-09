@@ -4,9 +4,28 @@ Author: Eric Krebs
 Description: a theme
 */
 :root{
-	--logo-blue:#34C1F0;
+	/* hsl(195, 86%, 57%)
+	#34c1f0
+	rgb(52, 193, 240) */
+	
+	
+	--logo-blue-red:52;
+	--logo-blue-green:193;
+	--logo-blue-blue:240;
+	--logo-blue:rgb(var(--logo-blue-red),var(--logo-blue-green),var(--logo-blue-blue));
+	
+	/* #ef5c68
+	rgb(239, 92, 104)
+	hsl(355, 82%, 65%) */
+	--logo-pink-red:239;
+	--logo-pink-green:92;
+	--logo-pink-blue:104;
+	
+	/* --logo-pink:#ED5B67; */
+	--logo-pink:rgb(var(--logo-pink-red),var(--logo-pink-green),var(--logo-pink-blue));;
 
-	--logo-pink:#ED5B67;
+
+	
 	
 	--site-black-red:0;
 	--site-black-green:0;
@@ -404,6 +423,13 @@ main input:invalid{
 
 .swingtxleft-events-container .swtxl-events-day{
 	background-color: var(--logo-pink);
+	background-color: rgb( calc(( var(--site-white-red) +  var(--logo-pink-red) ) / 2) , calc(( var(--site-white-green) +  var(--logo-pink-green) ) / 2) , calc(( var(--site-white-blue) +  var(--logo-pink-blue) ) / 2) );
+
+	background-color: rgb( 
+		calc((10 * var(--site-white-red) + var(--logo-pink-red) ) / 11) , 
+		calc((10 * var(--site-white-green) +  var(--logo-pink-green) ) / 11) ,
+		calc((10 * var(--site-white-blue) +  var(--logo-pink-blue) ) / 11)
+		);
 	/* display:grid;
 	grid-auto-columns: 30% 70%;
 	justify-content: space-between; */
@@ -413,6 +439,14 @@ main input:invalid{
 }
 .swingtxleft-events-container .swtxl-events-day:nth-child(2n){
 	background-color: var(--site-white);
+
+	/* background-color: rgb( calc((2 * var(--site-white-red) + var(--logo-blue-red) ) / 3) , calc((2 * var(--site-white-green) +  var(--logo-blue-green) ) / 3) , calc((3 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 3) ); */
+
+	background-color: rgb( 
+		calc((10 * var(--site-white-red) + var(--logo-blue-red) ) / 11) , 
+		calc((10 * var(--site-white-green) +  var(--logo-blue-green) ) / 11) ,
+		calc((10 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 11)
+		);
 }
 
 
@@ -430,7 +464,7 @@ main input:invalid{
 	width: max-content; 
 	
 	color: var(--logo-pink);
-	font-size: 1.3rem;
+	font-size: 1rem;
 	font-weight: normal;
 	/* height:2rem; */
 	/* width: 100%; */
