@@ -103,8 +103,14 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 	let errorBar=document.createElement('div');
 	errorBar.classList.add('swing-tx-left-event-filter-errors');
 
-	controlForm.appendChild(resetButton);
-	controlForm.appendChild(submitButton);
+
+	let fieldsetForButtons=document.createElement('fieldset');
+
+
+	fieldsetForButtons.appendChild(resetButton);
+	fieldsetForButtons.appendChild(submitButton);
+	controlForm.appendChild(fieldsetForButtons);
+
 
 	controlForm.appendChild(errorBar);
 
@@ -193,6 +199,7 @@ function writeZipCodeFilterControls(){
 	locationFilterCheckbox.setAttribute('type','checkbox');
 	locationFilterCheckbox.setAttribute('name','event-filter-location');
 	locationFilterCheckbox.setAttribute('value','yes');
+	locationFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
 
 	let locationLabel=elementWithText('label','Filter by location');
 
@@ -204,8 +211,10 @@ function writeZipCodeFilterControls(){
 	zipFilterContainer.appendChild(locationLabel);
 
 
+	let hideExtraInputContainer=document.createElement('div');
+	hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
 
-	let zipLabel=elementWithText('label','Zip Code:');
+	let zipLabel=elementWithText('label',' Zip Code:');
 	let zipInput=document.createElement('input');
 	zipInput.setAttribute('name','event-zip-code');
 	zipInput.setAttribute('type','text');
@@ -213,10 +222,10 @@ function writeZipCodeFilterControls(){
 	// zipInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
 	
 	zipLabel.appendChild(zipInput);
-	zipFilterContainer.appendChild(zipLabel);
+	hideExtraInputContainer.appendChild(zipLabel);
 
 
-	let distanceLabel=elementWithText('label','Maximum Distance');
+	let distanceLabel=elementWithText('label',' Maximum Distance: ');
 	let distianceInput=document.createElement('input');
 	distianceInput.setAttribute('name','event-max-distance');
 	distianceInput.setAttribute('type','number');
@@ -224,9 +233,9 @@ function writeZipCodeFilterControls(){
 	// distianceInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
 	
 	distanceLabel.appendChild(distianceInput);
-	zipFilterContainer.appendChild(distanceLabel);
+	hideExtraInputContainer.appendChild(distanceLabel);
 
-	
+	zipFilterContainer.appendChild(hideExtraInputContainer);
 
 	// zipFilterButton.addEventListener('click',filterButtonClick);
 	//zipFilterContainer.appendChild(zipFilterButton);
@@ -256,6 +265,7 @@ function writeFilterByDateControls(){
 	dateFilterCheckbox.setAttribute('type','checkbox');
 	dateFilterCheckbox.setAttribute('name','event-filter-date');
 	dateFilterCheckbox.setAttribute('value','yes');
+	dateFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
 
 	let dateLabel=elementWithText('label','Filter by Date');
 
@@ -264,7 +274,10 @@ function writeFilterByDateControls(){
 	dateLabel.setAttribute('for',dateFilterCcheckboxID);
 
 	dateFilterContainer.appendChild(dateFilterCheckbox);
-	dateFilterContainer.appendChild(dateLabel)
+	dateFilterContainer.appendChild(dateLabel);
+
+	let hideExtraInputContainer=document.createElement('div');
+	hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
 
 
 	let startInput=document.createElement('input');
@@ -276,11 +289,11 @@ function writeFilterByDateControls(){
 	
 	let startInputID='swing-tx-left-event-start-date-'+Math.random();
 	startInput.setAttribute('id',startInputID);
-	let startlabel=elementWithText('label','Start Date');
+	let startlabel=elementWithText('label',' Start Date: ');
 	startlabel.setAttribute('for',startInputID);
 
-	dateFilterContainer.appendChild(startlabel);
-	dateFilterContainer.appendChild(startInput);
+	hideExtraInputContainer.appendChild(startlabel);
+	hideExtraInputContainer.appendChild(startInput);
 
 	
 
@@ -293,11 +306,13 @@ function writeFilterByDateControls(){
 
 	let endInputID='swing-tx-left-event-end-date-'+Math.random();
 	endInput.setAttribute('id',endInputID);
-	let endlabel=elementWithText('label','End Date');
+	let endlabel=elementWithText('label',' End Date: ');
 	endlabel.setAttribute('for',endInputID);
 
-	dateFilterContainer.appendChild(endlabel);
-	dateFilterContainer.appendChild(endInput);
+	hideExtraInputContainer.appendChild(endlabel);
+	hideExtraInputContainer.appendChild(endInput);
+
+	dateFilterContainer.appendChild(hideExtraInputContainer);
 
 	// let dateFilterButton=elementWithText('button','Filter by Date');
 	// dateFilterButton.classList.add('dateFilterButton');

@@ -416,9 +416,53 @@ main input:invalid{
 	padding:3rem;
 
 }
+.swingtxleft-events-filter-container form{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.swingtxleft-events-filter-container fieldset{
+	background-color: var(--site-black);
+	color:var(--site-white);
+	margin:0.7rem;
+	font-size: 0.9rem;
+	padding: 0.5rem;
+	box-shadow: -0.5rem -0.5rem 0rem 0 var(--logo-blue), 0.5rem 0.5rem 0rem 0 var(--logo-pink);
+}
+
+
+.swingtxleft-events-filter-container .swingtx-left-container-for-hiding-options{
+	 display:none; 
+}
+
+.swingtx-left-checkbox-for-hiding-options:checked ~ .swingtx-left-container-for-hiding-options{
+
+	display:block; 
+}
+
+.swingtxleft-events-filter-container input[type=reset],
+.swingtxleft-events-filter-container button{
+	margin:0.7rem;
+	background-color: var(--site-black);
+	color: var(--site-white);
+	padding: 0.5rem;
+	border-width: 0;
+	box-shadow: -0.2rem -0.2rem 0rem 0 var(--logo-blue), 0.2rem 0.2rem 0rem 0 var(--logo-pink);
+}
+
+.swingtxleft-events-filter-container input[type=reset]{
+	color: var(--logo-pink);
+}
+.swingtxleft-events-filter-container button{
+	color: var(--logo-blue);
+}
+
 
 .swingtxleft-events-container{
 	
+}
+.swingtxleft-events-container a{
+	word-break: break-all;
 }
 
 .swingtxleft-events-container .swtxl-events-day{
@@ -474,15 +518,15 @@ main input:invalid{
 	text-align: center; */
 	/* width: 5rem; */
 
-	box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--site-white);
-
+	/* box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--site-white); */
+	box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--logo-pink);
 
 }
 .swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swtxl-events-big-day{
-	color: var(--logo-blue);
+	/* color: var(--logo-blue); */
 	/* border-color: var(--logo-pink); */
 	/* box-shadow: 1rem 1rem 0rem 0 var(--logo-blue), -1rem -1rem 0rem 0 var(--logo-pink); */
-	box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--logo-pink);
+	/* box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--logo-pink); */
 
 }
 
