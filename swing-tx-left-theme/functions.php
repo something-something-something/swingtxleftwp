@@ -36,7 +36,9 @@ function swing_tx_left_theme_add_style(){
 	wp_enqueue_style('style',get_stylesheet_Uri());
 }
 function swing_tx_left_theme_add_scripts(){
-	wp_enqueue_script('script',get_template_directory_uri().'/js/theme.js');
+	wp_enqueue_script('swing-tx-left-theme-general',get_template_directory_uri().'/js/theme.js');
+	wp_enqueue_script('swing-tx-left-theme-mobilize-events',get_template_directory_uri().'/js/mobilize-events.js');
+	
 }
 
 add_action('init','swing_tx_left_theme_reg_menus');

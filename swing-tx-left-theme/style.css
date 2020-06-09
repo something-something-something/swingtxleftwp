@@ -300,6 +300,8 @@ header nav ul li:nth-child(2n+1) a:hover{
 	border-style:solid;
 	border-color: var(--logo-pink);
 
+	/* trying withou border*/
+	/* border-bottom: 0; */
 	
 }
 
@@ -352,7 +354,8 @@ header nav ul li:nth-child(2n+1) a:hover{
 	margin:0 auto 5rem auto;
 }
 
-.pageTitle{padding: 2rem;
+.pageTitle{
+	padding: 2rem;
 	display:block;
 	margin:0;
 	background-color: rgba(var(--site-black-red),var(--site-black-green),var(--site-black-blue),0.8);
@@ -372,10 +375,125 @@ main{
 	padding:3rem;
 }
 
+body.page-template-no-margin main{
+	margin:0 0 0 0;
+	max-width:100%;
+	padding: 0;
+}
+
+main fieldset{
+	border-width: 0;
+}
+
+
+main input:invalid{
+	background-color: var(--logo-pink);
+}
+
+.swingtxleft-events-filter-container{
+	display:block;
+	margin:0 auto 0 auto;
+	max-width:80rem;
+	padding:3rem;
+
+}
+
+.swingtxleft-events-container{
+	
+}
+
+.swingtxleft-events-container .swtxl-events-day{
+	background-color: var(--logo-pink);
+	/* display:grid;
+	grid-auto-columns: 30% 70%;
+	justify-content: space-between; */
+	 
+	 padding: 3rem 0 3rem 0;
+	
+}
+.swingtxleft-events-container .swtxl-events-day:nth-child(2n){
+	background-color: var(--site-white);
+}
+
+
+.swingtxleft-events-container .swtxl-events-day .swtxl-events-big-day{
+	/* grid-row-end: -1; */
+	position: sticky; 
+	top:0;
+	/* bottom: 0;  */
+	margin:0rem auto 2rem auto;
+	padding: 1rem 1rem;
+	/* width: 50vw;  */
+	/* display: inline-block; */
+	/* transform: rotateX(30deg) rotateZ(10deg); */
+	background-color: var(--site-black);
+	width: max-content; 
+	
+	color: var(--logo-pink);
+	font-size: 1.3rem;
+	font-weight: normal;
+	/* height:2rem; */
+	/* width: 100%; */
+	 /* border-color: var(--logo-blue);
+	border-width: 0 0 0.5rem 0;
+	border-style: solid;
+	text-align: center; */
+	/* width: 5rem; */
+
+	box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--site-white);
+
+
+}
+.swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swtxl-events-big-day{
+	color: var(--logo-blue);
+	/* border-color: var(--logo-pink); */
+	/* box-shadow: 1rem 1rem 0rem 0 var(--logo-blue), -1rem -1rem 0rem 0 var(--logo-pink); */
+	box-shadow: 0.5rem 0.5rem 0rem 0 var(--logo-blue), 1rem 1rem 0rem 0 var(--logo-pink);
+
+}
+
+
+body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big-day{
+	top:32px;
+}
+@media screen and (max-width: 782px){
+	body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big-day{
+		top:46px;
+	}
+}
+
+@media screen and (max-width: 600px){
+	body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big-day{
+		top:0;
+	}
+}
+
+.swingtxleft-events-container .swingtxleft-event{
+	/* width: 80%; */
+	padding: 2rem;
+	display:block;
+	/* grid-column:2 / 2 ; */
+	
+	 margin:0 auto 0 auto; 
+	 max-width:80rem;  
+	
+}
+
+.swingtxleft-events-container .swingtxleft-event h3{
+	margin: 0;
+}
+
+
+
+
+
+
+
+
 footer{
 	color: var(--site-white);
 	padding: 4rem 4rem;
-	margin: 5rem 0 0 0;
+	margin: 0;
 	/* min-height: 20vh; */
 	background-color:var(--site-black);
 	border-width: 1rem 0rem 0rem 0rem;

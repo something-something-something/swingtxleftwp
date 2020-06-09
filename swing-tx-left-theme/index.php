@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js" integrity="sha256-3mv+NUxFuBg26MtcnuN2X37WUxuGunWCCiG2YCSBjNc=" crossorigin="anonymous"></script>
 
 
 		<?php
@@ -12,7 +12,7 @@
 		?>
 	</head>
 
-	<body>
+	<body <?php body_class(); ?>>
 
 		<header id="main-header"><div class="site-logo">
 			<?php
