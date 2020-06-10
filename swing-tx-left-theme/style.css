@@ -315,13 +315,14 @@ header nav ul li:nth-child(2n+1) a:hover{
 	flex-direction: column;
 	min-height:40vh;
 	color:var(--site-white);
-	border-width: 0rem 0rem 1rem 0rem;
+	/* border-width: 0rem 0rem 1rem 0rem;
 	border-style:solid;
-	border-color: var(--logo-pink);
+	border-color: var(--logo-pink); */
 
 	/* trying withou border*/
 	/* border-bottom: 0; */
-	
+	/* box-shadow: 0rem calc(20vmin + 0.5rem) 0rem -20vmin var(--logo-blue), 0rem calc(30vmin + 1rem) 0rem -30vmin var(--logo-pink); */
+	/* box-shadow: 0rem calc(5.5rem) 0rem -5rem var(--logo-blue), 0rem calc(11rem) 0rem -10rem var(--logo-pink); */
 }
 
 
@@ -377,14 +378,20 @@ header nav ul li:nth-child(2n+1) a:hover{
 	padding: 2rem;
 	display:block;
 	margin:0;
-	background-color: rgba(var(--site-black-red),var(--site-black-green),var(--site-black-blue),0.8);
+	background-color: rgba(var(--site-black-red),var(--site-black-green),var(--site-black-blue),0.9);
 	text-align:center;
 	position:absolute;
 	width:100%;
 	padding:2rem 0 2rem 0;
 	bottom:0;
 	/* color:var(--logo-blue); */
+	box-shadow: 0rem calc(3% + 0.5rem) 0rem -3% var(--logo-blue), 0rem calc(5% + 1rem) 0rem -5% var(--logo-pink);
+	box-shadow: 0rem 1.5rem 0rem -1rem var(--logo-blue), 0rem 3rem 0rem -2rem var(--logo-pink);
+	/* box-shadow:  0rem 3rem 0rem -2rem var(--logo-pink); */
+	
 }
+
+
 main{
 	display:block;
 	margin:0 auto 0 auto;
