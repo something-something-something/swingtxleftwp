@@ -237,9 +237,9 @@ function writeZipCodeFilterControls(){
 	
 	zipLabel.appendChild(zipInput);
 	hideExtraInputContainer.appendChild(zipLabel);
+	hideExtraInputContainer.appendChild(document.createElement('br'));
 
-
-	let distanceLabel=elementWithText('label',' Maximum Distance: ');
+	let distanceLabel=elementWithText('label',' Distance: ');
 	let distianceInput=document.createElement('input');
 	distianceInput.setAttribute('name','event-max-distance');
 	distianceInput.setAttribute('type','number');
@@ -308,7 +308,7 @@ function writeFilterByDateControls(){
 
 	hideExtraInputContainer.appendChild(startlabel);
 	hideExtraInputContainer.appendChild(startInput);
-
+	hideExtraInputContainer.appendChild(document.createElement('br'));
 	
 
 	let endInput=document.createElement('input');
@@ -587,13 +587,25 @@ function writeEvents(events,elementContainer){
 		return groupedArr;
 	},[]);
 	console.log(eventTimeSlotsGroupedByDay);
-
+	let dayDisplayObserver=new IntersectionObserver((ent,obs)=>{
+		for(let entry of ent){
+			if(entry.isIntersecting){
+				entry.target.classList.add('shrunk-big-day');
+			}
+			else{
+				entry.target.classList.remove('shrunk-big-day');
+			}
+		}
+	},{rootMargin:'0px 0px -90% 0px'});
 	
 	for(let day of eventTimeSlotsGroupedByDay){
 		let dayContainer=document.createElement('div');
 		dayContainer.classList.add('swtxl-events-day');
+
 		let dayDisplay=elementWithText('h2',day.dayStr); 
 		dayDisplay.classList.add('swtxl-events-big-day');
+		
+		dayDisplayObserver.observe(dayDisplay);
 
 		dayContainer.appendChild(dayDisplay);
 
@@ -661,7 +673,7 @@ function eventTimeSlotHTML(eventTimeSlot){
 	if(event.timeslots.length>1){
 		let showMoreTimesContainer=document.createElement('details');
 
-		let showMoreTimesButton=elementWithText('summary','Show More Times');
+		let showMoreTimesButton=elementWithText('summary','Other Times');
 		showMoreTimesContainer.appendChild(showMoreTimesButton);
 		
 		let showMoreTimesList=document.createElement('ul');
@@ -670,7 +682,7 @@ function eventTimeSlotHTML(eventTimeSlot){
 
 				let sdate = new Date(t.start_date * 1000);
 				let edate = new Date(t.end_date * 1000);
-				let timeText = dateFormater.format(sdate) + ' to ' + dateFormater.format(edate);
+				let timeText = dateFormater.format(sdate);// + ' to ' + dateFormater.format(edate);
 				let li=document.createElement('li');
 				let link=elementWithText('a', timeText);
 				link.setAttribute('href','#eventid-'+event.id+'-'+t.start_date+'-'+t.end_date);
@@ -738,9 +750,25 @@ function eventTimeSlotHTML(eventTimeSlot){
 
 	// eventDiv.appendChild(eventLink);
 
+	let observer=new IntersectionObserver((ent,obs)=>{
+		for(let entry of ent)
+		if(entry.isIntersecting){
+			//console.log(entry.target);
+			entry.target.classList.add('mobilize-sign-up-animate');
+		}
+		else{
+			//console.log(entry.target);
+			entry.target.classList.remove('mobilize-sign-up-animate');
+		}
+		
+	},{rootMargin:'0px 0px 0px 0px',threshold:1});
+
+
 	let signUpButton=elementWithText('button','Sign Up');
+	observer.observe(signUpButton);
 	signUpButton.addEventListener('click',overlaySignUp);
 	signUpButton.setAttribute('data-sign-up-url',event.browser_url);
+	signUpButton.classList.add('mobilize-sign-up')
 
 	eventDiv.appendChild(signUpButton);
 
@@ -785,18 +813,18 @@ function makeTagHTML(t){
 
 
 function overlaySignUp(ev){
-	let signUpContainer=document.createElement('div');
+	let signUpContainer=document.createElement('button');
 
-	signUpContainer.setAttribute('style','z-index:900000000;top:0;left:0;position:fixed;width:100%;height:100%;background-color:rgba(0,0,0,0.5);');
+	signUpContainer.classList.add('mobilize-signup-iframe-overlay');
 
 	let signUpIframe=document.createElement('iframe');
 	signUpIframe.setAttribute('src',ev.currentTarget.getAttribute('data-sign-up-url'));
-	signUpIframe.setAttribute('style','top:10%;left:10%;position:fixed;width:80%;height:80%;');
+	signUpIframe.classList.add('mobilize-signup-iframe');
 
 	signUpContainer.appendChild(signUpIframe);
 
-	let signUpCloseButton=elementWithText('span','X');
-	signUpCloseButton.setAttribute('style','top:0;right:0;position:fixed;height:10vmin;width:10vmin;text-align:center;font-size:8vmin;line-height:normal;color:red;background-color:black;border-radius:50%;padding:1vmin;');
+	let signUpCloseButton=elementWithText('button','X');
+	signUpCloseButton.classList.add('mobilize-signup-iframe-close');
 	signUpCloseButton.addEventListener('click',()=>{
 		signUpContainer.remove();
 	})
