@@ -76,21 +76,34 @@ function splitEventsIntoTimeSlot(events){
 
 //form
 async function createSwingLeftEventsControlForm(data,formContainer,eventsContainer){
+	let refilterFunc=()=>{
+		let d=new FormData(controlForm);
+		for(let e of d.entries()){
+			console.log(e);
+		}
+		reAddCalanderWithFiltering(controlForm,eventsContainer);
 
+	};
 	let filterHideBox=document.createElement('details');
 	filterHideBox.classList.add('swingtx-left-hide-box-filter-form');
 	let filterHideBoxSummary=elementWithText('summary','Filters');
 	filterHideBox.appendChild(filterHideBoxSummary);
 
 	let controlForm=document.createElement('form');
+
+	controlForm.addEventListener('reset',()=>{
+		setTimeout(()=>{
+			refilterFunc();
+		});
+	});
 	
 	let filterOptionsContainer=document.createElement('div');
 	filterOptionsContainer.classList.add('swing-tx-left-filter-form-options');
 
-	filterOptionsContainer.appendChild(writeFilterByTypeControls(data));
-	filterOptionsContainer.appendChild(writeFilterByVirtualStatusControls(data));
-	filterOptionsContainer.appendChild( writeZipCodeFilterControls());
-	filterOptionsContainer.appendChild(writeFilterByDateControls());
+	filterOptionsContainer.appendChild(writeFilterByTypeControls(refilterFunc,data));
+	filterOptionsContainer.appendChild(writeFilterByVirtualStatusControls(refilterFunc,data));
+	filterOptionsContainer.appendChild( writeZipCodeFilterControls(refilterFunc));
+	filterOptionsContainer.appendChild(writeFilterByDateControls(refilterFunc));
 
 	controlForm.appendChild(filterOptionsContainer);
 
@@ -101,15 +114,10 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 	submitButton.textContent='Filter';
 	submitButton.setAttribute('type','button');
 	
-	submitButton.addEventListener('click',()=>{
-		let d=new FormData(controlForm);
-		for(let e of d.entries()){
-			console.log(e);
-		}
+	
 
-		reAddCalanderWithFiltering(controlForm,eventsContainer);
 
-	})
+	submitButton.addEventListener('click',refilterFunc);
 
 	let errorBar=document.createElement('div');
 	errorBar.classList.add('swing-tx-left-event-filter-errors');
@@ -120,7 +128,7 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 
 
 	fieldsetForButtons.appendChild(resetButton);
-	fieldsetForButtons.appendChild(submitButton);
+	//fieldsetForButtons.appendChild(submitButton);
 	controlForm.appendChild(fieldsetForButtons);
 
 
@@ -134,11 +142,11 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 
 }
 
-function writeFilterByTypeControls(swingtxleftEvents){
+function writeFilterByTypeControls(refilterFunc,swingtxleftEvents){
 	//document.getElementById('swingleftTypeOptions').innerHTML='';
 	let typeFilterContainer=document.createElement('fieldset');
 	
-	typeFilterContainer.appendChild(document.createTextNode('Filter by Event Type: '));
+	typeFilterContainer.appendChild(elementWithText('legend','Event Type: '));
 	let eventTypes=getEventTypesAvailable(swingtxleftEvents);
 	typeFilterContainer.appendChild(document.createElement('br'));
 
@@ -149,9 +157,12 @@ function writeFilterByTypeControls(swingtxleftEvents){
 		checkbox.setAttribute('value',et);
 		checkbox.setAttribute('name','event-type');
 		checkbox.setAttribute('type','checkbox');
-		let checkboxID='swing-tx-left-checkbox-event-type-'+et+'-'+Math.random();
 
-		checkbox.setAttribute('id',checkboxID);
+		checkbox.addEventListener('change',refilterFunc);
+
+
+		let checkboxID='swing-tx-left-checkbox-event-type-'+et+'-'+Math.random();
+		checkbox.setAttribute('id',checkboxID);		
 		typeLabel.setAttribute('for',checkboxID);
 		typeFilterContainer.appendChild(checkbox);
 		typeFilterContainer.appendChild(typeLabel);
@@ -164,11 +175,11 @@ function writeFilterByTypeControls(swingtxleftEvents){
 }
 
 
-function writeFilterByVirtualStatusControls(){
+function writeFilterByVirtualStatusControls(refilterFunc,data){
 	let virtualStatusFilterContainer=document.createElement('fieldset');
 	
-	virtualStatusFilterContainer.appendChild(document.createTextNode('Filter by Virtual Status: '));
-	virtualStatusFilterContainer.appendChild(document.createElement('br'));
+	virtualStatusFilterContainer.appendChild(elementWithText('legend','In Person/Virtual'));
+	//virtualStatusFilterContainer.appendChild(document.createElement('br'));
 	let statusArr=[
 		{name:'Virtual', value:'true'},
 		{name:'In Person',value:'false'}
@@ -181,6 +192,8 @@ function writeFilterByVirtualStatusControls(){
 		checkbox.setAttribute('name','event-virtual-status');
 		checkbox.setAttribute('value',s.value);
 		checkbox.setAttribute('type','checkbox');
+
+		checkbox.addEventListener('change',refilterFunc);
 		
 		let checkboxID='swing-tx-left-checkbox-event-virtual-status-'+s.value+'-'+Math.random();
 		checkbox.setAttribute('id',checkboxID);
@@ -197,7 +210,7 @@ function writeFilterByVirtualStatusControls(){
 }
 
 
-function writeZipCodeFilterControls(){
+function writeZipCodeFilterControls(refilterFunc){
 	
 	let zipFilterContainer=document.createElement('fieldset');
 
@@ -205,7 +218,7 @@ function writeZipCodeFilterControls(){
 
 	// zipFilterContainer.appendChild(document.createTextNode('Zipcode: '));
 
-
+	zipFilterContainer.appendChild(elementWithText('legend','Location'));
 
 
 
@@ -213,6 +226,9 @@ function writeZipCodeFilterControls(){
 	locationFilterCheckbox.setAttribute('type','checkbox');
 	locationFilterCheckbox.setAttribute('name','event-filter-location');
 	locationFilterCheckbox.setAttribute('value','yes');
+
+	locationFilterCheckbox.addEventListener('change',refilterFunc);
+
 	locationFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
 
 	let locationLabel=elementWithText('label','Filter by location');
@@ -234,7 +250,8 @@ function writeZipCodeFilterControls(){
 	zipInput.setAttribute('type','text');
 	zipInput.setAttribute('pattern','\\d{5}');
 	// zipInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
-	
+	zipInput.addEventListener('change',refilterFunc);
+
 	zipLabel.appendChild(zipInput);
 	hideExtraInputContainer.appendChild(zipLabel);
 	hideExtraInputContainer.appendChild(document.createElement('br'));
@@ -245,7 +262,9 @@ function writeZipCodeFilterControls(){
 	distianceInput.setAttribute('type','number');
 	distianceInput.setAttribute('Placeholder','Miles');
 	// distianceInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
-	
+	distianceInput.addEventListener('change',refilterFunc);
+
+
 	distanceLabel.appendChild(distianceInput);
 	hideExtraInputContainer.appendChild(distanceLabel);
 
@@ -267,10 +286,11 @@ function whenFilterLocationEnabledReAddCalanderWithFiltering(){
 
 
 
-function writeFilterByDateControls(){
+function writeFilterByDateControls(refilterFunc){
 	
 	let dateFilterContainer=document.createElement('fieldset');
-
+	
+	dateFilterContainer.appendChild(elementWithText('legend','Filter by Virtual Status: '));
 	
 
 
@@ -281,7 +301,9 @@ function writeFilterByDateControls(){
 	dateFilterCheckbox.setAttribute('value','yes');
 	dateFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
 
-	let dateLabel=elementWithText('label','Filter by Date');
+	dateFilterCheckbox.addEventListener('change',refilterFunc);
+
+	let dateLabel=elementWithText('label','Filter By Date');
 
 	let dateFilterCcheckboxID='swing-tx-left-checkbox-event-filter-date-'+Math.random();
 	dateFilterCheckbox.setAttribute('id',dateFilterCcheckboxID);
@@ -300,7 +322,8 @@ function writeFilterByDateControls(){
 	startInput.setAttribute('pattern','\\d\\d\\d\\d-\\d\\d-\\d\\d');
 	startInput.setAttribute('name','event-start-date');
 	//startInput.addEventListener('blur',whenFilterDateEnabledReAddCalanderWithFiltering);
-	
+	startInput.addEventListener('change',refilterFunc);
+
 	let startInputID='swing-tx-left-event-start-date-'+Math.random();
 	startInput.setAttribute('id',startInputID);
 	let startlabel=elementWithText('label',' Start Date: ');
@@ -317,6 +340,7 @@ function writeFilterByDateControls(){
 	endInput.setAttribute('pattern','\\d\\d\\d\\d-\\d\\d-\\d\\d');
 	endInput.setAttribute('name','event-end-date');
 	//endInput.addEventListener('blur',whenFilterDateEnabledReAddCalanderWithFiltering);
+	endInput.addEventListener('change',refilterFunc);
 
 	let endInputID='swing-tx-left-event-end-date-'+Math.random();
 	endInput.setAttribute('id',endInputID);
