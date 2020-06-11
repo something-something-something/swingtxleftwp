@@ -512,11 +512,11 @@ async function reAddCalanderWithFiltering(theForm,eventsContainer){
 	let data=await getSwingLeftEvents(queryURL);
 	
 	//todo write this a bit better
-	let filterVirtualStatusButtonsSelected=document.querySelectorAll('.virtualStatusFilterButton.eventFilterButtonSelected');
-	if(filterVirtualStatusButtonsSelected.length>0){
+	// let filterVirtualStatusButtonsSelected=document.querySelectorAll('.virtualStatusFilterButton.eventFilterButtonSelected');
+	if(fData.has('event-virtual-status')){
 		data=data.filter((el)=>{
-				for(let b of filterVirtualStatusButtonsSelected){
-					if(el.is_virtual.toString()===b.getAttribute('data-virtual-status')){
+				for(let vs of fData.getAll('event-virtual-status')){
+					if(el.is_virtual.toString()===vs){
 						return true;
 					}
 				}
