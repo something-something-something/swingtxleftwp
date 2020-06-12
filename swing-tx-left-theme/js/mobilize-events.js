@@ -86,12 +86,15 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 	};
 	let filterHideBox=document.createElement('details');
 	filterHideBox.classList.add('swingtx-left-hide-box-filter-form');
-	let filterHideBoxSummary=elementWithText('summary','Filters');
+	let filterHideBoxSummary=elementWithText('summary','Filter Events');
 	filterHideBox.appendChild(filterHideBoxSummary);
 
 	let controlForm=document.createElement('form');
 
 	controlForm.addEventListener('reset',()=>{
+		for(let el of controlForm.querySelectorAll('input')){
+			el.setCustomValidity('');
+		}
 		setTimeout(()=>{
 			refilterFunc();
 		});
@@ -220,29 +223,7 @@ function writeZipCodeFilterControls(refilterFunc){
 
 	zipFilterContainer.appendChild(elementWithText('legend','Location'));
 
-
-
-	let locationFilterCheckbox=document.createElement('input');
-	locationFilterCheckbox.setAttribute('type','checkbox');
-	locationFilterCheckbox.setAttribute('name','event-filter-location');
-	locationFilterCheckbox.setAttribute('value','yes');
-
-	locationFilterCheckbox.addEventListener('change',refilterFunc);
-
-	locationFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
-
-	let locationLabel=elementWithText('label','Filter by location');
-
-	let locationFilterCcheckboxID='swing-tx-left-checkbox-event-filter-location-'+Math.random();
-	locationFilterCheckbox.setAttribute('id',locationFilterCcheckboxID);
-	locationLabel.setAttribute('for',locationFilterCcheckboxID);
-
-	zipFilterContainer.appendChild(locationFilterCheckbox)
-	zipFilterContainer.appendChild(locationLabel);
-
-
-	let hideExtraInputContainer=document.createElement('div');
-	hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
+	
 
 	let zipLabel=elementWithText('label',' Zip Code:');
 	let zipInput=document.createElement('input');
@@ -250,25 +231,80 @@ function writeZipCodeFilterControls(refilterFunc){
 	zipInput.setAttribute('type','text');
 	zipInput.setAttribute('pattern','\\d{5}');
 	// zipInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
-	zipInput.addEventListener('change',refilterFunc);
+	
 
 	zipLabel.appendChild(zipInput);
-	hideExtraInputContainer.appendChild(zipLabel);
-	hideExtraInputContainer.appendChild(document.createElement('br'));
+	zipFilterContainer.appendChild(zipLabel);
+	zipFilterContainer.appendChild(document.createElement('br'));
 
 	let distanceLabel=elementWithText('label',' Distance: ');
 	let distianceInput=document.createElement('input');
 	distianceInput.setAttribute('name','event-max-distance');
 	distianceInput.setAttribute('type','number');
+	distianceInput.setAttribute('step','1');
+	distianceInput.setAttribute('min','1');
+	distianceInput.setAttribute('max','99999999');
+	distianceInput.setAttribute('value','10');
 	distianceInput.setAttribute('Placeholder','Miles');
 	// distianceInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
-	distianceInput.addEventListener('change',refilterFunc);
+	
 
 
 	distanceLabel.appendChild(distianceInput);
-	hideExtraInputContainer.appendChild(distanceLabel);
+	zipFilterContainer.appendChild(distanceLabel);
+	
+	
+	let locationCheck=()=>{
+		let shouldFilter=true;
+		let zipValidStr=''
+		let distanceValidStr='';
+		let focusedEl=document.activeElement;
+		zipInput.setCustomValidity('');
+		distianceInput.setCustomValidity('');
+		zipInput.reportValidity();
+		distianceInput.reportValidity();
 
-	zipFilterContainer.appendChild(hideExtraInputContainer);
+		console.log(zipInput.value);
+		console.log(distianceInput.value);
+
+		if(!zipInput.checkValidity()&&zipInput.value!==''){
+			shouldFilter=false;
+			zipValidStr+='Zip Code Invalid ';
+		}
+		if(!distianceInput.checkValidity()&&distianceInput.value!==''){
+			console.log(distianceInput.checkValidity());
+			shouldFilter=false;
+			distanceValidStr+='Distance Invalid ';
+		}
+		if(distianceInput.value!==''&&zipInput.value===''){
+			shouldFilter=false;
+			zipValidStr+='Zip Is required too '
+		}
+		if(distianceInput.value===''&&zipInput.value!==''){
+			shouldFilter=false;
+			distanceValidStr+='Distance Is required too '
+		}
+		
+		zipInput.setCustomValidity(zipValidStr);
+		distianceInput.setCustomValidity(distanceValidStr);
+
+		zipInput.reportValidity();
+		distianceInput.reportValidity();
+		focusedEl.focus();
+		if(shouldFilter){
+			refilterFunc();
+		}
+	};
+
+
+	
+	zipInput.addEventListener('input',locationCheck);
+
+	distianceInput.addEventListener('input',locationCheck);
+
+	
+	
+	//zipFilterContainer.appendChild(hideExtraInputContainer);
 
 	// zipFilterButton.addEventListener('click',filterButtonClick);
 	//zipFilterContainer.appendChild(zipFilterButton);
@@ -276,12 +312,14 @@ function writeZipCodeFilterControls(refilterFunc){
 	return zipFilterContainer;
 	
 }
-function whenFilterLocationEnabledReAddCalanderWithFiltering(){
-	if(document.querySelectorAll('.locationFilterButton.eventFilterButtonSelected').length>0){
-		reAddCalanderWithFiltering();
-	}
+
+
+// function whenFilterLocationEnabledReAddCalanderWithFiltering(){
+// 	if(document.querySelectorAll('.locationFilterButton.eventFilterButtonSelected').length>0){
+// 		reAddCalanderWithFiltering();
+// 	}
 	
-}
+// }
 
 
 
@@ -295,25 +333,25 @@ function writeFilterByDateControls(refilterFunc){
 
 
 
-	let dateFilterCheckbox=document.createElement('input');
-	dateFilterCheckbox.setAttribute('type','checkbox');
-	dateFilterCheckbox.setAttribute('name','event-filter-date');
-	dateFilterCheckbox.setAttribute('value','yes');
-	dateFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
+	// let dateFilterCheckbox=document.createElement('input');
+	// dateFilterCheckbox.setAttribute('type','checkbox');
+	// dateFilterCheckbox.setAttribute('name','event-filter-date');
+	// dateFilterCheckbox.setAttribute('value','yes');
+	// dateFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
 
-	dateFilterCheckbox.addEventListener('change',refilterFunc);
+	// dateFilterCheckbox.addEventListener('change',refilterFunc);
 
-	let dateLabel=elementWithText('label','Filter By Date');
+	// let dateLabel=elementWithText('label','Filter By Date');
 
-	let dateFilterCcheckboxID='swing-tx-left-checkbox-event-filter-date-'+Math.random();
-	dateFilterCheckbox.setAttribute('id',dateFilterCcheckboxID);
-	dateLabel.setAttribute('for',dateFilterCcheckboxID);
+	// let dateFilterCcheckboxID='swing-tx-left-checkbox-event-filter-date-'+Math.random();
+	// dateFilterCheckbox.setAttribute('id',dateFilterCcheckboxID);
+	// dateLabel.setAttribute('for',dateFilterCcheckboxID);
 
-	dateFilterContainer.appendChild(dateFilterCheckbox);
-	dateFilterContainer.appendChild(dateLabel);
+	// dateFilterContainer.appendChild(dateFilterCheckbox);
+	// dateFilterContainer.appendChild(dateLabel);
 
-	let hideExtraInputContainer=document.createElement('div');
-	hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
+	// let hideExtraInputContainer=document.createElement('div');
+	// hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
 
 
 	let startInput=document.createElement('input');
@@ -329,9 +367,9 @@ function writeFilterByDateControls(refilterFunc){
 	let startlabel=elementWithText('label',' Start Date: ');
 	startlabel.setAttribute('for',startInputID);
 
-	hideExtraInputContainer.appendChild(startlabel);
-	hideExtraInputContainer.appendChild(startInput);
-	hideExtraInputContainer.appendChild(document.createElement('br'));
+	dateFilterContainer.appendChild(startlabel);
+	dateFilterContainer.appendChild(startInput);
+	dateFilterContainer.appendChild(document.createElement('br'));
 	
 
 	let endInput=document.createElement('input');
@@ -347,10 +385,10 @@ function writeFilterByDateControls(refilterFunc){
 	let endlabel=elementWithText('label',' End Date: ');
 	endlabel.setAttribute('for',endInputID);
 
-	hideExtraInputContainer.appendChild(endlabel);
-	hideExtraInputContainer.appendChild(endInput);
+	dateFilterContainer.appendChild(endlabel);
+	dateFilterContainer.appendChild(endInput);
 
-	dateFilterContainer.appendChild(hideExtraInputContainer);
+	//dateFilterContainer.appendChild(hideExtraInputContainer);
 
 	// let dateFilterButton=elementWithText('button','Filter by Date');
 	// dateFilterButton.classList.add('dateFilterButton');
@@ -360,12 +398,6 @@ function writeFilterByDateControls(refilterFunc){
 	return dateFilterContainer;
 }
 
-function whenFilterDateEnabledReAddCalanderWithFiltering(){
-	if(document.querySelectorAll('.dateFilterButton.eventFilterButtonSelected').length>0){
-		reAddCalanderWithFiltering();
-	}
-	
-}
 
 // function writeFilterResetControls(){
 	
@@ -464,91 +496,100 @@ async function reAddCalanderWithFiltering(theForm,eventsContainer){
 	// for(let b of filterTagButtonsSelected){
 	// 	queryURL=queryURL+'&tag_id='+ b.getAttribute('data-tag-id');
 	// }
-	
-	if(fData.has('event-filter-location')){
-		console.log('geo filtering');
+	let geoQueryFragment=''
+	if(fData.get('event-zip-code')!==''||fData.get('event-max-distance')!==''){
+		//console.log('geo filtering');
 		let shouldAddToQuery=true;
 		if(fData.get('event-zip-code')===''){
-			errorBar.appendChild(document.createTextNode(' Zip Code Missing '));
+			//errorBar.appendChild(document.createTextNode(' Zip Code Missing '));
 			shouldAddToQuery=false;
 		}
 		if(fData.get('event-max-distance')===''){
-			errorBar.appendChild(document.createTextNode(' Distance Missing '));
+			//errorBar.appendChild(document.createTextNode(' Distance Missing '));
 			shouldAddToQuery=false;
 		}
 		if(shouldAddToQuery){
 				let zipcode=fData.get('event-zip-code');
 				let distance=fData.get('event-max-distance');
-			queryURL=queryURL+'&zipcode='+zipcode+'&max_dist='+distance;
+				geoQueryFragment='&zipcode='+zipcode+'&max_dist='+distance;
 		}
-	
 	}
 
 
-	if(fData.has('event-filter-date')){
-		console.log('date filtering');
-		let shouldAddToQuery=true;
-		if(fData.get('event-start-date')==''){
-			errorBar.appendChild(document.createTextNode(' Start Date Missing '));
-			shouldAddToQuery=false;
+	// if(fData.has('event-filter-date')){
+	// 	console.log('date filtering');
+	// 	let shouldAddToQuery=true;
+		// if(fData.get('event-start-date')==''){
+		// 	errorBar.appendChild(document.createTextNode(' Start Date Missing '));
+		// 	shouldAddToQuery=false;
+		// }
+		// if(fData.get('event-end-date')==''){
+		// 	errorBar.appendChild(document.createTextNode(' End Date Missing '));
+		// 	shouldAddToQuery=false;
+		// }
+		// if(shouldAddToQuery){
+	
+	
+	if(fData.get('event-start-date')!==''){
+		let startDateArr=fData.get('event-start-date').split('-').map((el)=>{
+			return parseInt(el,10);
+		});
+		let startDate=new Date(startDateArr[0],startDateArr[1]-1,startDateArr[2]);
+		let startSec=Math.floor(startDate.getTime()/1000);
+
+		queryURL=queryURL+'&timeslot_start=gte_'+startSec
+	}
+	
+	if(fData.get('event-end-date')!==''){
+		let endDateArr=fData.get('event-end-date').split('-').map((el)=>{
+		return parseInt(el,10);
+		});
+		console.log(endDateArr)
+		let endDate=new Date(endDateArr[0],endDateArr[1]-1,endDateArr[2]);
+		let endSec=Math.floor(endDate.getTime()/1000)+(24*60*60);
+		queryURL=queryURL+'&timeslot_start=lte_'+endSec;
+	}
+	
+
+	
+
+	try {
+		let data;
+		if(geoQueryFragment!==''){
+			console.log('Performing Geo filtering');
+			let virtURL=queryURL+'&is_virtual=true';
+			let geoURL=queryURL+geoQueryFragment+'&is_virtual=false';
+			console.log(virtURL);
+			console.log(geoURL);
+			data = await getSwingLeftEvents(virtURL);
+			let dataGeo=await getSwingLeftEvents(geoURL);
+			data=data.concat(dataGeo);
+			// console.log(dataGeo);
 		}
-		if(fData.get('event-end-date')==''){
-			errorBar.appendChild(document.createTextNode(' End Date Missing '));
-			shouldAddToQuery=false;
-		}
-		if(shouldAddToQuery){
-			let startDateArr=fData.get('event-start-date').split('-').map((el)=>{
-				return parseInt(el,10);
-			});
-			let endDateArr=fData.get('event-end-date').split('-').map((el)=>{
-				return parseInt(el,10);
-			});
-		
-			console.log({
-				s:startDateArr,
-				e:endDateArr
-			});
-
-			let startDate=new Date(startDateArr[0],startDateArr[1]-1,startDateArr[2]);
-
-			let endDate=new Date(endDateArr[0],endDateArr[1]-1,endDateArr[2]);
-
-			console.log({
-		
-				ss:startDate.toLocaleString(),
-				es:endDate.toLocaleString()
-			})
-
-			let startSec=Math.floor(startDate.getTime()/1000);
-
-			let endSec=Math.floor(endDate.getTime()/1000)+(24*60*60);
-
+		else{
+			console.log(queryURL);
+			data = await getSwingLeftEvents(queryURL);
 			
-
-			queryURL=queryURL+'&timeslot_start=gte_'+startSec+'&timeslot_start=lte_'+endSec;
 		}
-	}
-
-
-
-	console.log(queryURL);
-
-	let data=await getSwingLeftEvents(queryURL);
-	
-	//todo write this a bit better
-	// let filterVirtualStatusButtonsSelected=document.querySelectorAll('.virtualStatusFilterButton.eventFilterButtonSelected');
-	if(fData.has('event-virtual-status')){
-		data=data.filter((el)=>{
-				for(let vs of fData.getAll('event-virtual-status')){
-					if(el.is_virtual.toString()===vs){
+		//todo write this a bit better
+		// let filterVirtualStatusButtonsSelected=document.querySelectorAll('.virtualStatusFilterButton.eventFilterButtonSelected');
+		if (fData.has('event-virtual-status')) {
+			data = data.filter((el) => {
+				for (let vs of fData.getAll('event-virtual-status')) {
+					if (el.is_virtual.toString() === vs) {
 						return true;
 					}
 				}
-			return false;
-		});
+				return false;
+			});
+		}
+
+		addHcdpCalender(data, eventsContainer);
+	}
+	catch(err){
+		eventsContainer.innerText='Failed to fetch Data. Please reset your filters and try again';
 	}
 	
-	addHcdpCalender(data,eventsContainer);
 }
 
 function getEventTypesAvailable(swingtxleftEvents){

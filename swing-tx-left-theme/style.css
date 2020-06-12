@@ -41,9 +41,28 @@ Description: a theme
 	--link-color-for-logo-pink-background:#0491F0;;
 	--link-color-for-logo-pink-background:var(--link-color);
 
+
+	--light-blue-red:calc((10 * var(--site-white-red) + var(--logo-blue-red) ) / 11); 
+	--light-blue-green:calc((10 * var(--site-white-green) + var(--logo-blue-green) ) / 11); 
+	--light-blue-blue:calc((10 * var(--site-white-blue) + var(--logo-blue-blue) ) / 11); 
+
+	--light-blue:rgb(var(--light-blue-red),var(--light-blue-green),var(--light-blue-blue));
+
+
+	--light-pink-red:calc((10 * var(--site-white-red) + var(--logo-pink-red) ) / 11); 
+	--light-pink-green:calc((10 * var(--site-white-green) + var(--logo-pink-green) ) / 11); 
+	--light-pink-blue:calc((10 * var(--site-white-blue) + var(--logo-pink-blue) ) / 11); 
+
+	--light-pink:rgb(var(--light-pink-red),var(--light-pink-green),var(--light-pink-blue));
 }
 
+summary{
+	list-style: none;
 
+}
+summary::-webkit-details-marker{
+display: none;
+}
 
 body,div,header,nav{
 	margin:0;
@@ -420,25 +439,36 @@ main input:invalid{
 
 .swingtxleft-events-filter-container{
 	display:block;
+	background-color: rgb(var(--site-black-red),var(--site-black-green),var(--site-black-blue));
 	margin:0 auto 0 auto;
-	max-width:80rem;
+	background-color: rgb(
+		calc( ( var(--site-white-red) + var(--logo-blue-red) + 2 * var(--logo-pink-red) ) / 4 ),
+		calc( ( var(--site-white-red) + var(--logo-blue-green) + 1 * var(--logo-pink-green) ) / 3 ),
+		calc( ( var(--site-white-red) + 2 * var(--logo-blue-blue) + 1 * var(--logo-pink-blue) ) / 4 )
+	);
+	background-color: var(--light-blue);
 	padding:3rem;
 
 }
 
 .swingtxleft-events-filter-container .swingtx-left-hide-box-filter-form{
 	margin:0;
-	padding: 0;
+	padding: 0;max-width:80rem;
+	margin:0 auto 0 auto;
 	
 }
 
 .swingtxleft-events-filter-container .swingtx-left-hide-box-filter-form>summary{
-	background-color: var(--site-black);
-	color: var(--site-white);
+	background-color: var(--logo-blue);
+
+	color: var(--site-black);
 	padding: 1rem;
 	margin: 1rem;
 	width: max-content;
 	margin: 0 auto;
+	outline: none;
+	list-style: none;
+	
 }
 
 .swingtxleft-events-filter-container form{
@@ -468,11 +498,12 @@ main input:invalid{
 		calc( var(--logo-blue-green)  / 2) ,
 		calc(  var(--logo-blue-blue)  / 1.5)
 		); */
-		background-color: rgb( 
+		/* background-color: rgb( 
 			calc((10 * var(--site-white-red) + var(--logo-pink-red) ) / 11) , 
 			calc((10 * var(--site-white-green) +  var(--logo-pink-green) ) / 11) ,
 			calc((10 * var(--site-white-blue) +  var(--logo-pink-blue) ) / 11)
-			);
+			); */
+	background-color: var(--light-pink);
 	color:var(--site-black);
 	margin: 0;
 	padding: 1rem;
@@ -480,11 +511,12 @@ main input:invalid{
 }
 
 .swingtxleft-events-filter-container .swing-tx-left-filter-form-options fieldset:nth-child(2n){
-	background-color: rgb( 
+	/* background-color: rgb( 
 		calc((10 * var(--site-white-red) + var(--logo-blue-red) ) / 11) , 
 		calc((10 * var(--site-white-green) +  var(--logo-blue-green) ) / 11) ,
 		calc((10 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 11)
-		);
+		); */
+		/* background-color: var(--light-blue); */
 }
 
 .swingtxleft-events-filter-container .swing-tx-left-filter-form-options fieldset legend{
@@ -579,14 +611,15 @@ main input:invalid{
 }
 
 .swingtxleft-events-container .swtxl-events-day{
-	background-color: var(--logo-pink);
-	background-color: rgb( calc(( var(--site-white-red) +  var(--logo-pink-red) ) / 2) , calc(( var(--site-white-green) +  var(--logo-pink-green) ) / 2) , calc(( var(--site-white-blue) +  var(--logo-pink-blue) ) / 2) );
+	/* background-color: var(--logo-pink);
+	background-color: rgb( calc(( var(--site-white-red) +  var(--logo-pink-red) ) / 2) , calc(( var(--site-white-green) +  var(--logo-pink-green) ) / 2) , calc(( var(--site-white-blue) +  var(--logo-pink-blue) ) / 2) ); */
 
-	background-color: rgb( 
+	/* background-color: rgb( 
 		calc((10 * var(--site-white-red) + var(--logo-pink-red) ) / 11) , 
 		calc((10 * var(--site-white-green) +  var(--logo-pink-green) ) / 11) ,
 		calc((10 * var(--site-white-blue) +  var(--logo-pink-blue) ) / 11)
-		);
+		); */
+	background-color: var(--light-pink);
 	/* display:grid;
 	grid-auto-columns: 30% 70%;
 	justify-content: space-between; */
@@ -613,11 +646,12 @@ main input:invalid{
 
 	/* background-color: rgb( calc((2 * var(--site-white-red) + var(--logo-blue-red) ) / 3) , calc((2 * var(--site-white-green) +  var(--logo-blue-green) ) / 3) , calc((3 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 3) ); */
 
-	background-color: rgb( 
+	/* background-color: rgb( 
 		calc((10 * var(--site-white-red) + var(--logo-blue-red) ) / 11) , 
 		calc((10 * var(--site-white-green) +  var(--logo-blue-green) ) / 11) ,
 		calc((10 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 11)
-		);
+		); */
+		background-color: var(--light-blue);
 }
 
 

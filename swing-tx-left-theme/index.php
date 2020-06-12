@@ -34,7 +34,7 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:linear-gradient(to right,rgb(var(--logo-blue-red),var(--logo-blue-green),var(--logo-blue-blue), 0.6)  ,rgb(var(--site-white-red),var(--site-white-green),var(--site-white-blue), 0.6)  ), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
+					?><div class="feature-img" style="background-image:linear-gradient(to right,rgba(var(--logo-blue-red),var(--logo-blue-green),var(--logo-blue-blue), 0.6)  ,rgba(var(--site-white-red),var(--site-white-green),var(--site-white-blue), 0.6)  ), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
 					
 				}
 				else{
