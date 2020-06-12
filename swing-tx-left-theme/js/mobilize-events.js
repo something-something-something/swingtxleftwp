@@ -244,7 +244,7 @@ function writeZipCodeFilterControls(refilterFunc){
 	distianceInput.setAttribute('step','1');
 	distianceInput.setAttribute('min','1');
 	distianceInput.setAttribute('max','99999999');
-	distianceInput.setAttribute('value','10');
+	//distianceInput.setAttribute('value','10');
 	distianceInput.setAttribute('Placeholder','Miles');
 	// distianceInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
 	
@@ -706,11 +706,18 @@ function eventTimeSlotHTML(eventTimeSlot){
 	// 	eventDiv.appendChild(eventFieldHTML('Summary',event.summary));
 	// }
 
-	if(event.is_virtual){
-		eventDiv.appendChild(elementWithText('div','Virtual Event'));
-	}
+	
 
-	eventDiv.appendChild(eventFieldHTML('Type',humanizeEventType(event.event_type)));
+	let eventTypeDiv=elementWithText('div',humanizeEventType(event.event_type));
+	eventTypeDiv.classList.add('swingtxleft-event-type-box');
+	if(event.is_virtual){
+		let virtSpan= elementWithText('span','Virtual Event');
+		virtSpan.classList.add('swingtxleft-virtual-status');
+		eventTypeDiv.appendChild(virtSpan);
+	}
+	
+
+	eventDiv.appendChild(eventTypeDiv);
 
 
 	let dateFormater=new Intl.DateTimeFormat(undefined,{
@@ -738,7 +745,7 @@ function eventTimeSlotHTML(eventTimeSlot){
 	if(event.timeslots.length>1){
 		let showMoreTimesContainer=document.createElement('details');
 
-		let showMoreTimesButton=elementWithText('summary','Other Times');
+		let showMoreTimesButton=elementWithText('summary','Alternate Times');
 		showMoreTimesContainer.appendChild(showMoreTimesButton);
 		
 		let showMoreTimesList=document.createElement('ul');
@@ -763,7 +770,13 @@ function eventTimeSlotHTML(eventTimeSlot){
 
 	if(event.location!==null){
 		
-		eventDiv.appendChild(eventFieldHTML('Location',event.location.venue));
+		if(event.address_visibility==='PUBLIC'){
+			eventDiv.appendChild(eventFieldHTML('Location',event.location.venue));
+		}
+		else{
+			eventDiv.appendChild(eventFieldHTML('Location','Sign Up for the location'));
+		}
+		
 		if(event.address_visibility==='PUBLIC'){
 			let googlemapurl='https://www.google.com/maps/dir/?api=1';
 			let address=event.location.address_lines.join(' ')+' '+event.location.locality+', '+event.location.region+' '+event.location.postal_code
@@ -774,14 +787,18 @@ function eventTimeSlotHTML(eventTimeSlot){
 			mapLink.setAttribute('target','_blank');
 			mapLink.appendChild(document.createTextNode('Directions'));
 			eventDiv.appendChild(mapLink);
+			eventDiv.appendChild(elementWithText('div',event.location.address_lines.join('\n')));
 		}
+		// else{
+		// 	eventDiv.appendChild(elementWithText('div','Sign Up for the location'));
+		// }
 		
-		eventDiv.appendChild(elementWithText('div',event.location.address_lines.join('\n')));
+		
 		eventDiv.appendChild(elementWithText('div',event.location.locality+', '+event.location.region+' '+event.location.postal_code));
 	}
 
-	let descriptionPreviewLength=2;
-	let descriptionLines=event.description.split('\n\n');
+	// let descriptionPreviewLength=2;
+	// let descriptionLines=event.description.split('\n\n');
 
 	let descriptionField=document.createElement('div');
 	
@@ -790,19 +807,29 @@ function eventTimeSlotHTML(eventTimeSlot){
 		linkify:true
 	});
 
-	if(descriptionLines.length>descriptionPreviewLength){
+	descriptionField.innerHTML=markdownIt.render(event.description);
+
+	let numOfChildrentoKeep=2;
+	let childNum=1;
+	let childrenToRemove=[];
+	for(let child of descriptionField.children){
+		
+		if(childNum>numOfChildrentoKeep){
+			childrenToRemove.push(child);
+		}
+		childNum++;
+	}
+	
+	if(childrenToRemove.length>0){
+		
+		childrenToRemove.forEach((el)=>{ el.remove()});
 		let showMoreClicker=elementWithText('a',' ...Click to Show More');
-		descriptionField.innerHTML=markdownIt.render(descriptionLines.slice(0,descriptionPreviewLength).join('\n\n'));
+		descriptionField.appendChild(showMoreClicker);
+
 		showMoreClicker.addEventListener('click',(ev)=>{
 			descriptionField.innerHTML=markdownIt.render(event.description);
 			ev.currentTarget.remove();
 		});
-
-
-		descriptionField.appendChild(showMoreClicker);
-	}
-	else{
-		descriptionField.innerHTML=markdownIt.render(event.description);
 	}
 	eventDiv.appendChild(descriptionField);
 

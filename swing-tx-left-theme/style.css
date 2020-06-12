@@ -58,7 +58,7 @@ Description: a theme
 
 summary{
 	list-style: none;
-
+	outline: none;
 }
 summary::-webkit-details-marker{
 display: none;
@@ -522,6 +522,7 @@ main input:invalid{
 .swingtxleft-events-filter-container .swing-tx-left-filter-form-options fieldset legend{
 	float:left;
 	width: 100%;
+	margin:0 0 1rem 0;
 	border-style: solid;
 	border-color: var(--logo-pink);
 	border-width: 0 0 0.1rem 0;
@@ -631,12 +632,12 @@ main input:invalid{
 }
 @keyframes swtxl-day-appear{
 	0%{
-		/* opacity: 0; */
-		filter:blur(1rem);
+		opacity: 0;
+		/* filter:blur(1rem); */
 	}
 	100%{
-		/* opacity: 1; */
-		filter:blur(0rem);
+		opacity: 1;
+		/* filter:blur(0rem); */
 	}
 }
 
@@ -739,6 +740,44 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 }
 
 .swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event h3{
+	border-color: var(--logo-pink);
+}
+
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box{
+	padding: 0.5rem;
+	margin: 0 0 0.5rem 0;
+	width: max-content;
+	background-color: var(--site-black);
+	color: var(--site-white);
+	
+}
+
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box .swingtxleft-virtual-status{
+	color: var(--logo-pink);
+}
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box .swingtxleft-virtual-status::before{
+	content:" / ";
+	color: var(--logo-blue);
+}
+
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event summary{
+	padding: 0.5rem;
+	width: max-content;
+	/* background-color: var(--light-blue); */
+	border-style: solid;
+	border-width: 0 0 0 0.4em;
+	border-color: var(--site-black);
+	transition: border-color 0.5s;
+}
+.swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event summary{
+	/* background-color: var(--light-pink); */
+	/* border-color: var(--logo-pink); */
+}
+
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event details[open] summary{
+	border-color: var(--logo-blue);
+}
+.swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event details[open] summary{
 	border-color: var(--logo-pink);
 }
 
