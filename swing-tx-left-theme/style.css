@@ -753,25 +753,35 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 }
 
 .swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box .swingtxleft-virtual-status{
-	color: var(--logo-pink);
-}
-.swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box .swingtxleft-virtual-status::before{
-	content:" / ";
 	color: var(--logo-blue);
 }
+/* .swingtxleft-events-container .swtxl-events-day .swingtxleft-event .swingtxleft-event-type-box .swingtxleft-virtual-status::before{
+	content:" - ";
+	color: var(--logo-pink);
+} */
 
 .swingtxleft-events-container .swtxl-events-day .swingtxleft-event summary{
 	padding: 0.5rem;
+	/* color: var(--link-color); */
 	width: max-content;
 	/* background-color: var(--light-blue); */
 	border-style: solid;
-	border-width: 0 0 0 0.4em;
+	border-width: 0 0 0.1rem 0;
 	border-color: var(--site-black);
 	transition: border-color 0.5s;
 }
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event summary:hover{
+	/* text-decoration: underline; */
+	border-color: var(--logo-pink);
+}
+.swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event summary:hover{
+	/* text-decoration: underline; */
+	border-color: var(--logo-blue);
+}
+
 .swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event summary{
 	/* background-color: var(--light-pink); */
-	/* border-color: var(--logo-pink); */
+	/* border-color: var(--light-blue); */
 }
 
 .swingtxleft-events-container .swtxl-events-day .swingtxleft-event details[open] summary{

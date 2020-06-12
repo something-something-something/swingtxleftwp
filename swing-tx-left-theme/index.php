@@ -34,7 +34,7 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:linear-gradient(to bottom right,var(--logo-blue),var(--logo-pink) ), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);background-blend-mode:color;"><?php
+					?><div class="feature-img" style="background-image:linear-gradient(to bottom right,var(--logo-blue),var(--logo-blue) ), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);background-blend-mode:color;"><?php
 					
 				}
 				else{

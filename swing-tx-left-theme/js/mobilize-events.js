@@ -708,13 +708,15 @@ function eventTimeSlotHTML(eventTimeSlot){
 
 	
 
-	let eventTypeDiv=elementWithText('div',humanizeEventType(event.event_type));
+	let eventTypeDiv=document.createElement('div');
 	eventTypeDiv.classList.add('swingtxleft-event-type-box');
+	
 	if(event.is_virtual){
-		let virtSpan= elementWithText('span','Virtual Event');
+		let virtSpan= elementWithText('span','Virtual ');
 		virtSpan.classList.add('swingtxleft-virtual-status');
 		eventTypeDiv.appendChild(virtSpan);
 	}
+	eventTypeDiv.appendChild(document.createTextNode(humanizeEventType(event.event_type)));
 	
 
 	eventDiv.appendChild(eventTypeDiv);
