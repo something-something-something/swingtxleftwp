@@ -1,6 +1,6 @@
 'use strict';
 //note requires https://github.com/markdown-it/markdown-it in order to run
-
+// see https://github.com/mobilizeamerica/api for mobilize america api docs
 
 window.addEventListener('DOMContentLoaded',async ()=>{
 
@@ -149,7 +149,7 @@ function writeFilterByTypeControls(refilterFunc,swingtxleftEvents){
 	//document.getElementById('swingleftTypeOptions').innerHTML='';
 	let typeFilterContainer=document.createElement('fieldset');
 	
-	typeFilterContainer.appendChild(elementWithText('legend','Event Type: '));
+	typeFilterContainer.appendChild(elementWithText('legend','Event Type'));
 	let eventTypes=getEventTypesAvailable(swingtxleftEvents);
 	typeFilterContainer.appendChild(document.createElement('br'));
 
@@ -181,7 +181,7 @@ function writeFilterByTypeControls(refilterFunc,swingtxleftEvents){
 function writeFilterByVirtualStatusControls(refilterFunc,data){
 	let virtualStatusFilterContainer=document.createElement('fieldset');
 	
-	virtualStatusFilterContainer.appendChild(elementWithText('legend','In Person/Virtual'));
+	virtualStatusFilterContainer.appendChild(elementWithText('legend','Virtual / In Person'));
 	//virtualStatusFilterContainer.appendChild(document.createElement('br'));
 	let statusArr=[
 		{name:'Virtual', value:'true'},
@@ -328,7 +328,7 @@ function writeFilterByDateControls(refilterFunc){
 	
 	let dateFilterContainer=document.createElement('fieldset');
 	
-	dateFilterContainer.appendChild(elementWithText('legend','Filter by Virtual Status: '));
+	dateFilterContainer.appendChild(elementWithText('legend','Date'));
 	
 
 
