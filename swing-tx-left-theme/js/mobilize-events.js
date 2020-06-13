@@ -150,11 +150,24 @@ function writeFilterByTypeControls(refilterFunc,swingtxleftEvents){
 	let typeFilterContainer=document.createElement('fieldset');
 	
 	typeFilterContainer.appendChild(elementWithText('legend','Event Type'));
-	let eventTypes=getEventTypesAvailable(swingtxleftEvents);
-	typeFilterContainer.appendChild(document.createElement('br'));
+
+	let eventTypes=getEventTypesAvailable(swingtxleftEvents).sort((a,b)=>{
+		if(a==='OTHER'){
+			return 1;
+		}
+		else if(b==='OTHER'){
+			return -1;
+		}
+		else{
+			return a.localeCompare(b);
+		}
+	});
+
+	//typeFilterContainer.appendChild(document.createElement('br'));
 
 	for(let et of eventTypes){
-		let typeLabel=elementWithText('label',humanizeEventType(et));
+		let typeLabel=document.createElement('label');
+		
 		
 		let checkbox=document.createElement('input');
 		checkbox.setAttribute('value',et);
@@ -164,12 +177,13 @@ function writeFilterByTypeControls(refilterFunc,swingtxleftEvents){
 		checkbox.addEventListener('change',refilterFunc);
 
 
-		let checkboxID='swing-tx-left-checkbox-event-type-'+et+'-'+Math.random();
-		checkbox.setAttribute('id',checkboxID);		
-		typeLabel.setAttribute('for',checkboxID);
-		typeFilterContainer.appendChild(checkbox);
+		// let checkboxID='swing-tx-left-checkbox-event-type-'+et+'-'+Math.random();
+		// checkbox.setAttribute('id',checkboxID);		
+		// typeLabel.setAttribute('for',checkboxID);
+		typeLabel.appendChild(checkbox);
+		typeLabel.appendChild(document.createTextNode(humanizeEventType(et,{forForm:true})));
 		typeFilterContainer.appendChild(typeLabel);
-		typeFilterContainer.appendChild(document.createElement('br'));
+		//typeFilterContainer.appendChild(document.createElement('br'));
 		
 	}
 
@@ -188,7 +202,7 @@ function writeFilterByVirtualStatusControls(refilterFunc,data){
 		{name:'In Person',value:'false'}
 	]
 	for(let s of statusArr){
-		let label=elementWithText('label',s.name);
+		let label=document.createElement('label');
 
 		let checkbox=document.createElement('input');
 
@@ -198,15 +212,17 @@ function writeFilterByVirtualStatusControls(refilterFunc,data){
 
 		checkbox.addEventListener('change',refilterFunc);
 		
-		let checkboxID='swing-tx-left-checkbox-event-virtual-status-'+s.value+'-'+Math.random();
-		checkbox.setAttribute('id',checkboxID);
-		label.setAttribute('for',checkboxID);
+		// let checkboxID='swing-tx-left-checkbox-event-virtual-status-'+s.value+'-'+Math.random();
+		// checkbox.setAttribute('id',checkboxID);
+		// label.setAttribute('for',checkboxID);
 
 		// button.classList.add('virtualStatusFilterButton');
 		//button.addEventListener('click',filterButtonClick);
-		virtualStatusFilterContainer.appendChild(checkbox);
+
+		label.appendChild(checkbox);
+		label.appendChild(document.createTextNode(s.name));
 		virtualStatusFilterContainer.appendChild(label);
-		virtualStatusFilterContainer.appendChild(document.createElement('br'));
+		//virtualStatusFilterContainer.appendChild(document.createElement('br'));
 
 	}
 	return virtualStatusFilterContainer;
@@ -235,7 +251,7 @@ function writeZipCodeFilterControls(refilterFunc){
 
 	zipLabel.appendChild(zipInput);
 	zipFilterContainer.appendChild(zipLabel);
-	zipFilterContainer.appendChild(document.createElement('br'));
+	//zipFilterContainer.appendChild(document.createElement('br'));
 
 	let distanceLabel=elementWithText('label',' Distance: ');
 	let distianceInput=document.createElement('input');
@@ -362,14 +378,17 @@ function writeFilterByDateControls(refilterFunc){
 	//startInput.addEventListener('blur',whenFilterDateEnabledReAddCalanderWithFiltering);
 	startInput.addEventListener('change',refilterFunc);
 
-	let startInputID='swing-tx-left-event-start-date-'+Math.random();
-	startInput.setAttribute('id',startInputID);
-	let startlabel=elementWithText('label',' Start Date: ');
-	startlabel.setAttribute('for',startInputID);
-
+	//let startInputID='swing-tx-left-event-start-date-'+Math.random();
+	//startInput.setAttribute('id',startInputID);
+	let startlabel=document.createElement('label');
+	
+//	startlabel.setAttribute('for',startInputID);
+	startlabel.appendChild(document.createTextNode('Start Date: '));
+	startlabel.appendChild(startInput);
+	
 	dateFilterContainer.appendChild(startlabel);
-	dateFilterContainer.appendChild(startInput);
-	dateFilterContainer.appendChild(document.createElement('br'));
+	
+	//dateFilterContainer.appendChild(document.createElement('br'));
 	
 
 	let endInput=document.createElement('input');
@@ -380,13 +399,14 @@ function writeFilterByDateControls(refilterFunc){
 	//endInput.addEventListener('blur',whenFilterDateEnabledReAddCalanderWithFiltering);
 	endInput.addEventListener('change',refilterFunc);
 
-	let endInputID='swing-tx-left-event-end-date-'+Math.random();
-	endInput.setAttribute('id',endInputID);
-	let endlabel=elementWithText('label',' End Date: ');
-	endlabel.setAttribute('for',endInputID);
-
+	// let endInputID='swing-tx-left-event-end-date-'+Math.random();
+	// endInput.setAttribute('id',endInputID);
+	let endlabel=document.createElement('label');
+	// endlabel.setAttribute('for',endInputID);
+	endlabel.appendChild(document.createTextNode('End Date: '));
+	endlabel.appendChild(endInput);
 	dateFilterContainer.appendChild(endlabel);
-	dateFilterContainer.appendChild(endInput);
+	
 
 	//dateFilterContainer.appendChild(hideExtraInputContainer);
 
@@ -747,7 +767,7 @@ function eventTimeSlotHTML(eventTimeSlot){
 	if(event.timeslots.length>1){
 		let showMoreTimesContainer=document.createElement('details');
 
-		let showMoreTimesButton=elementWithText('summary','Alternate Times');
+		let showMoreTimesButton=elementWithText('summary','Additional Times');
 		showMoreTimesContainer.appendChild(showMoreTimesButton);
 		
 		let showMoreTimesList=document.createElement('ul');
@@ -917,7 +937,7 @@ function overlaySignUp(ev){
 
 	signUpContainer.appendChild(signUpIframe);
 
-	let signUpCloseButton=elementWithText('button','X');
+	let signUpCloseButton=elementWithText('button','Close');
 	signUpCloseButton.classList.add('mobilize-signup-iframe-close');
 	signUpCloseButton.addEventListener('click',()=>{
 		signUpContainer.remove();
@@ -972,9 +992,16 @@ function elementWithText(element,text){
 	return el;
 }
 
-function humanizeEventType(eventType){
+function humanizeEventType(eventType,options={}){
+	if(!options.hasOwnProperty('forForm')){
+		options.forForm=false;
+	}
+
 	if(eventType==='MEET_GREET'){
 		return 'Meet & Greet'
+	}
+	if(options.forForm&&eventType==='OTHER'){
+		return 'Other (includes literature drops)'
 	}
 
 	let words=eventType.split('_');
