@@ -6,6 +6,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js" integrity="sha256-3mv+NUxFuBg26MtcnuN2X37WUxuGunWCCiG2YCSBjNc=" crossorigin="anonymous"></script>
 
 
+
+
+		<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Permanent+Marker&display=swap" rel="stylesheet">
+
 		<?php
 		
 			wp_head();
@@ -38,7 +42,7 @@
 					
 				}
 				else{
-					?><div class="feature-img" style="background-image: linear-gradient(to right,var(--logo-blue), var(--site-white) );"><?php
+					?><div class="feature-img" style="background-image: linear-gradient(to right,var(--logo-blue), var(--site-white) );min-height:20vh;"><?php
 				}
 					
 			
