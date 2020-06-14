@@ -34,7 +34,7 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:linear-gradient(to bottom right,var(--logo-blue),var(--logo-blue) ), url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);background-blend-mode:color;"><?php
+					?><div class="feature-img" style="background-image:/*linear-gradient(to right,var(--logo-blue), var(--logo-blue)) ,*/ url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);background-blend-mode:hard-light;"><?php
 					
 				}
 				else{
@@ -47,8 +47,15 @@
 					dynamic_sidebar('missionstatment');
 					dynamic_sidebar('emailsignup');
 				}
-					the_title('<h1 class="pageTitle">','</h1>');
+					
 				?></div>
+				<?php 
+				if(!is_front_page()||true){
+					the_title('<h1 class="pageTitle">','</h1>'); 
+				}
+					
+					
+				?>
 				<main>
 					<?php the_content(); ?>
 				</main><?php
