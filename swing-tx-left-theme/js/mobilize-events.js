@@ -241,11 +241,13 @@ function writeZipCodeFilterControls(refilterFunc){
 
 	
 
-	let zipLabel=elementWithText('label',' Zip Code:');
+	let zipLabel=elementWithText('label',' Zip Code: ');
 	let zipInput=document.createElement('input');
 	zipInput.setAttribute('name','event-zip-code');
 	zipInput.setAttribute('type','text');
 	zipInput.setAttribute('pattern','\\d{5}');
+	// zipInput.setAttribute('size','5');
+	zipInput.setAttribute('maxlength','5');
 	// zipInput.addEventListener('blur',whenFilterLocationEnabledReAddCalanderWithFiltering);
 	
 
@@ -258,7 +260,7 @@ function writeZipCodeFilterControls(refilterFunc){
 	distianceInput.setAttribute('name','event-max-distance');
 	distianceInput.setAttribute('type','number');
 	distianceInput.setAttribute('step','1');
-	distianceInput.setAttribute('min','1');
+	distianceInput.setAttribute('min','0');
 	distianceInput.setAttribute('max','99999999');
 	//distianceInput.setAttribute('value','10');
 	distianceInput.setAttribute('Placeholder','Miles');

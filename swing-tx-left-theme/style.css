@@ -591,10 +591,11 @@ main input:invalid{
 	text-align: center;
 }
 
-.swingtxleft-events-filter-container input[type=text],
-.swingtxleft-events-filter-container input[type=number]{
-	width:10rem;
-}
+/* .swingtxleft-events-filter-container input[type=text],
+.swingtxleft-events-filter-container input[type=number]
+{
+	width:min-content;
+} */
 
 .swingtxleft-events-filter-container input[type=reset],
 .swingtxleft-events-filter-container button{
@@ -651,6 +652,7 @@ main input:invalid{
 	padding: 0.2rem;
 	margin: 0.3rem 0;
 	display: block;
+	/* width: max-content; */
 }
 .swingtxleft-events-filter-container button{
 	background-color: var(--logo-blue);
@@ -827,17 +829,17 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 } */
 
 .swingtxleft-events-container .swtxl-events-day .swingtxleft-event summary{
-	padding: 0.5rem;
+	padding: 0.5rem 0.5rem 0.5rem 0 ;
 	margin:0.5rem 0;
 	/* color: var(--link-color); */
 	width: max-content;
 	/* background-color: var(--light-blue); */
 	border-style: solid;
 	border-width: 0.1rem;
-	border-color: var(--site-black);
+	border-color: var(--logo-mean);
 	transition: border-color 0.5s;
 	border-radius: 0.5rem;
-	transition: background-color 1s;
+	transition: background-color 1s, color 1s;
 }
 .swingtxleft-events-container .swingtxleft-event summary::before{
 	padding: 0 0.5rem;
@@ -854,7 +856,8 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 
 
 .swingtxleft-events-container .swtxl-events-day .swingtxleft-event details[open] summary{
-	background-color: var(--logo-blue);
+	background-color: var(--logo-mean);
+	/* color: var(--site-white); */
 }
 /* .swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event details[open] summary::before{
 	color: var(--logo-pink);
