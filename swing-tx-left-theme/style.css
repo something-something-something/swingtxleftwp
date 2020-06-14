@@ -497,7 +497,7 @@ main input:invalid{
 		calc( ( var(--site-white-red) + 2 * var(--logo-blue-blue) + 1 * var(--logo-pink-blue) ) / 4 )
 	);
 	background-color: var(--light-blue);
-	padding:2rem 0 1rem 0;
+	padding:2rem 3rem 1rem 3rem;
 
 }
 
