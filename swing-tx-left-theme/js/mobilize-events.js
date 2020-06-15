@@ -5,7 +5,7 @@
 window.addEventListener('DOMContentLoaded',async ()=>{
 
 	if(document.getElementById('swingtxleft-events-container')!==null && document.getElementById('swingtxleft-events-filter-container')!==null){
-
+		
 		document.getElementById('swingtxleft-events-container').classList.add('swingtxleft-events-container');
 		document.getElementById('swingtxleft-events-filter-container').classList.add('swingtxleft-events-filter-container');
 
@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded',async ()=>{
 		//writeFilterByTagControls(data);
 		//writeFilterByVirtualStatusControls(data);
 
-
+		document.getElementById('swingtxleft-events-filter-container').classList.remove('swingtxleft-events-filter-container-extra-space');
 		//new
 
 		createSwingLeftEventsControlForm(data,document.getElementById('swingtxleft-events-filter-container'),document.getElementById('swingtxleft-events-container'));
