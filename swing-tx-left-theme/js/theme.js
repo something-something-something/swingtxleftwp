@@ -1,3 +1,7 @@
+'use strict';
+
+
+//hamburger
 document.addEventListener('DOMContentLoaded',()=>{
 	hamburgerButtonHideAndShow();
 	document.getElementById('hamburger-button').addEventListener('click',hamburgerMenuHideAndShow)
@@ -56,4 +60,39 @@ function hamburgerButtonHideAndShow(){
 		// mainHeader.style.backgroundColor=null;
 	}
 
+}
+
+
+//mail chimp
+document.addEventListener('DOMContentLoaded',()=>{
+	let subscribeButtons=document.querySelectorAll('.mailchimp-subscribe-button');
+	for(let b of subscribeButtons){
+		b.addEventListener('click',showMailchimpSignup);
+	}
+});
+
+function showMailchimpSignup(){
+	let signUp=document.querySelector('.mailchimp-subscribe-form');
+	if(signUp===null){
+		console.log('add Signup form in between a div with class mailchimp-subscribe-form');
+		return;
+	}
+	signUp.classList.add('mailchimp-display-form');
+	let backdropButton=document.createElement('button');
+	backdropButton.classList.add('mailchimp-subscribe-backdrop');
+	backdropButton.addEventListener('click',hideMailChimpSignup);
+	document.getElementsByTagName('body')[0].appendChild(backdropButton);
+}
+function hideMailChimpSignup(){
+	let mailChimpBackdrops=document.querySelectorAll('.mailchimp-subscribe-backdrop');
+	for(let b of mailChimpBackdrops){
+		b.remove();
+
+	}
+	let signUp=document.querySelector('.mailchimp-subscribe-form');
+	if(signUp===null){
+		console.log('add Signup form in between a div with class mailchimp-subscribe-form');
+		return;
+	}
+	signUp.classList.remove('mailchimp-display-form');
 }
