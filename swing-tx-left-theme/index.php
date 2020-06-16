@@ -5,8 +5,9 @@
 		<meta name="viewport" content="width=device-width">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js" integrity="sha256-3mv+NUxFuBg26MtcnuN2X37WUxuGunWCCiG2YCSBjNc=" crossorigin="anonymous"></script>
 
+		<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&display=swap" rel="stylesheet">
 
-
+		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 		<link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Permanent+Marker&display=swap" rel="stylesheet">
 
@@ -42,7 +43,7 @@
 					
 				}
 				else{
-					?><div class="feature-img" style="background-image: linear-gradient(to right,var(--logo-blue), var(--site-white) );min-height:20vh;"><?php
+					?><div class="feature-img" style="background-image: linear-gradient(to right,var(--site-white),var(--logo-blue), var(--site-white) );min-height:20vh;"><?php
 				}
 					
 			
@@ -53,14 +54,14 @@
 				}
 					
 				?></div>
-				<?php 
+			
+				<main id="main">	<?php 
 				if(!is_front_page()||true){
 					the_title('<h1 class="pageTitle">','</h1>'); 
 				}
 					
 					
 				?>
-				<main>
 					<?php the_content(); ?>
 				</main><?php
 			}

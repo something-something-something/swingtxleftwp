@@ -52,7 +52,7 @@ function hamburgerButtonHideAndShow(){
 	hamburgerButton.classList.remove('hamburger-button-show');
 	closeHamburgerMenuBackdrops();
 
-	if(mainHeader.offsetHeight*1.1<mainHeader.scrollHeight){
+	if(mainHeader.offsetHeight*1.5<mainHeader.scrollHeight){
 		// mainHeader.style.backgroundColor='red';
 		hamburgerButton.classList.add('hamburger-button-show');
 	}
