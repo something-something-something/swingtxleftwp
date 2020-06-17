@@ -39,7 +39,7 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:/*linear-gradient(to right,var(--logo-blue), var(--logo-blue)) ,*/ url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);background-blend-mode:hard-light;"><?php
+					?><div class="feature-img" style="background-image:/*linear-gradient(to right,var(--logo-blue), var(--logo-blue)) ,*/ url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
 					
 				}
 				else{

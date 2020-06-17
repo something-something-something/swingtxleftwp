@@ -68,6 +68,9 @@ Description: a theme
 	--dark-blue:rgb(var(--dark-blue-red),var(--dark-blue-green),var(--dark-blue-blue));
 
 }
+html{
+	scroll-behavior: smooth;
+}
 
 summary{
 	list-style: none;
@@ -341,12 +344,13 @@ header nav ul li:nth-child(2n+1) a:hover{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position:center center;
-	/* background-attachment: fixed; */
+	background-attachment: fixed;
 	width:100%;
 	display:flex;
 	justify-content: space-between;
 	flex-direction: column;
 	min-height:calc(100vh - 3rem );
+	background-color: var(--site-black);
 	/* color:var(--site-white); */
 	/* border-width: 0rem 0rem 0.5rem 0rem;
 	border-style:solid;
