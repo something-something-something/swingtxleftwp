@@ -55,6 +55,12 @@ Description: a theme
 
 	--light-pink:rgb(var(--light-pink-red),var(--light-pink-green),var(--light-pink-blue));
 
+	--darken-blue-red:calc((0.2 * var(--site-black-red) + var(--logo-blue-red) ) / 1.2); 
+	--darken-blue-green:calc((0.2 * var(--site-black-green) + var(--logo-blue-green) ) / 1.2); 
+	--darken-blue-blue:calc((0.2 * var(--site-black-blue) + var(--logo-blue-blue) ) / 1.2); 
+
+	--darken-blue:rgb(var(--darken-blue-red),var(--darken-blue-green),var(--darken-blue-blue));
+
 	
 	--logo-mean-red:calc( ( var(--logo-blue-red) + var(--logo-pink-red) ) / 2);
 	--logo-mean-green:calc( ( var(--logo-blue-green) + var(--logo-pink-green) ) / 2);
@@ -154,6 +160,9 @@ header{
 
 } */
 
+header.hamMode{
+	justify-content: space-between;
+}
 
 header .site-logo{
 	display:inline-block;
@@ -164,9 +173,10 @@ header .site-logo{
 header .site-logo img{
 	height:2.4rem;
 	max-width: 70vw;
+	width: auto;
 	object-fit:contain;
 	margin: 0.3rem;
-	
+	margin-left: 1rem;
 }
 
 header #hamburger-button{
@@ -178,6 +188,7 @@ header #hamburger-button{
 	font-size: 1rem;
 	padding: 0;
 	margin: 0;
+	margin-right:1rem ;
 	border-width: 0;
 	max-width:20vw;
 	height:3rem ;
@@ -442,7 +453,7 @@ margin: 0;
 	margin: 5vmin;
 	margin-bottom: 10vh;
 	font-size: 5vmin;
-	background-color: transparent;
+	background-color: var(--site-black);
 	padding: 0.5vmin 1vmin;
 	
 	color: var(--site-white);
@@ -549,7 +560,12 @@ main input:invalid{
 	margin: 0 auto;
 	outline: none;
 	list-style: none;
+	transition: background-color 0.8s;
 	
+}
+
+.swingtxleft-events-filter-container .swingtx-left-hide-box-filter-form>summary:hover{
+	background-color: var(--darken-blue);
 }
 
 .swingtxleft-events-filter-container form{
@@ -906,11 +922,17 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 	margin:3rem 0 0 0;
 	border-width: 0;
 	outline: none;
+	outline-width: 0.1rem;
+	outline-style: solid;
+	outline-color: transparent;
 	/* box-shadow: 0rem 0rem 0 0 var(--logo-blue), 0rem 0rem 0 0 var(--logo-pink); */
 	/* transform: rotateZ(20deg); */
 	/* transition: margin 0.5s ;
 	transition-delay: 0.5s; */
+	transition: background-color 0.8s;
 }
+
+
 
 .swingtxleft-events-container .swtxl-events-day:nth-child(2n) .swingtxleft-event .mobilize-sign-up{
 	/* background-color: var(--logo-pink); */
@@ -935,39 +957,23 @@ body.admin-bar .swingtxleft-events-container .swtxl-events-day .swtxl-events-big
 }
 @keyframes mobilize-buton-visable-blue{
 	0%{
-		background-color: var(--logo-blue);
+		outline-color: transparent;
 	}
 	50%{
-		background-color: rgb( 
-				calc((2 * var(--site-white-red) + var(--logo-blue-red) ) / 3) , 
-				calc((2 * var(--site-white-green) +  var(--logo-blue-green) ) / 3) ,
-				calc((2 * var(--site-white-blue) +  var(--logo-blue-blue) ) / 3)
-				); 
+		outline-color:var(--site-black)
 	}
 	100%{
-		background-color: var(--logo-blue);
-	}
-}
-
-
-@keyframes mobilize-buton-visable-pink{
-	0%{
-		background-color: var(--logo-pink);
-	}
-	50%{
-		background-color: rgb( 
-				calc((2 * var(--site-white-red) + var(--logo-pink-red) ) / 3) , 
-				calc((2 * var(--site-white-green) +  var(--logo-pink-green) ) / 3) ,
-				calc((2 * var(--site-white-blue) +  var(--logo-pink-blue) ) / 3)
-				); 
-	}
-	100%{
-		background-color: var(--logo-pink);
+		outline-color: transparent;
 	}
 }
 
 
 
+
+.swingtxleft-events-container .swtxl-events-day .swingtxleft-event .mobilize-sign-up:hover{
+	background-color: var(--darken-blue);
+	
+}
 
 .mobilize-signup-iframe-overlay{
 	z-index:900000000;

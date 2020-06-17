@@ -39,8 +39,13 @@
 			while(have_posts()){
 				the_post();
 				if(has_post_thumbnail()){
-					?><div class="feature-img" style="background-image:/*linear-gradient(to right,var(--logo-blue), var(--logo-blue)) ,*/ url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
-					
+					if(is_front_page()){
+						?><div class="feature-img" style="background-image: url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);"><?php
+					}
+					else{
+						?><div class="feature-img" style="background-image: url(<?php esc_attr(the_post_thumbnail_url('full')); ?>);min-height:40vh;background-attachment:scroll;"><?php
+					}
+		
 				}
 				else{
 					?><div class="feature-img" style="background-image: linear-gradient(to right,var(--site-white),var(--logo-blue), var(--site-white) );min-height:20vh;"><?php

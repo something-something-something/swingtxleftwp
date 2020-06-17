@@ -47,7 +47,8 @@ function hamburgerButtonHideAndShow(){
 	let mainNav=document.getElementById('main-menu');
 	let hamburgerButton=document.getElementById('hamburger-button');
 	let mainHeader=document.getElementById("main-header");
-
+	let header=document.getElementsByTagName('header')[0];
+	header.classList.remove('hamMode');
 	mainNav.classList.remove('hamnav');
 	hamburgerButton.classList.remove('hamburger-button-show');
 	closeHamburgerMenuBackdrops();
@@ -55,6 +56,7 @@ function hamburgerButtonHideAndShow(){
 	if(mainHeader.offsetHeight*1.5<mainHeader.scrollHeight){
 		// mainHeader.style.backgroundColor='red';
 		hamburgerButton.classList.add('hamburger-button-show');
+		header.classList.add('hamMode');
 	}
 	else{
 		// mainHeader.style.backgroundColor=null;
