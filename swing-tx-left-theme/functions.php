@@ -16,10 +16,10 @@ function swing_tx_left_theme_reg_sidebars(){
 			'after_widget'=>'</div>'
 	));
 	register_sidebar(array(
-		'id'=>'emailsignup',
-		'name' =>__('Email Signup'),
-		'description' =>__('Email Signup'),
-		'before_widget'=>'<div id="%1$s" class="%2$s email-widget">',
+		'id'=>'otherbuttons',
+		'name' =>__('Other Buttons'),
+		'description' =>__('other buttons'),
+		'before_widget'=>'<div id="%1$s" class="%2$s other-buttons-widget">',
 		'after_widget'=>'</div>'
 ));
 }

@@ -55,7 +55,7 @@
 
 				if(is_front_page()){
 					dynamic_sidebar('missionstatment');
-					dynamic_sidebar('emailsignup');
+					dynamic_sidebar('otherbuttons');
 				}
 					
 				?></div>

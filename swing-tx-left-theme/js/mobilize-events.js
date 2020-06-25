@@ -141,6 +141,7 @@ async function createSwingLeftEventsControlForm(data,formContainer,eventsContain
 	filterHideBox.appendChild(controlForm);
 
 	formContainer.appendChild(filterHideBox);
+	// formContainer.appendChild(controlForm);
 
 
 }
@@ -314,31 +315,14 @@ function writeZipCodeFilterControls(refilterFunc){
 		}
 	};
 
-
 	
 	zipInput.addEventListener('input',locationCheck);
 
 	distianceInput.addEventListener('input',locationCheck);
 
-	
-	
-	//zipFilterContainer.appendChild(hideExtraInputContainer);
-
-	// zipFilterButton.addEventListener('click',filterButtonClick);
-	//zipFilterContainer.appendChild(zipFilterButton);
-
 	return zipFilterContainer;
 	
 }
-
-
-// function whenFilterLocationEnabledReAddCalanderWithFiltering(){
-// 	if(document.querySelectorAll('.locationFilterButton.eventFilterButtonSelected').length>0){
-// 		reAddCalanderWithFiltering();
-// 	}
-	
-// }
-
 
 
 
@@ -348,30 +332,6 @@ function writeFilterByDateControls(refilterFunc){
 	
 	dateFilterContainer.appendChild(elementWithText('legend','Date'));
 	
-
-
-
-	// let dateFilterCheckbox=document.createElement('input');
-	// dateFilterCheckbox.setAttribute('type','checkbox');
-	// dateFilterCheckbox.setAttribute('name','event-filter-date');
-	// dateFilterCheckbox.setAttribute('value','yes');
-	// dateFilterCheckbox.classList.add('swingtx-left-checkbox-for-hiding-options');
-
-	// dateFilterCheckbox.addEventListener('change',refilterFunc);
-
-	// let dateLabel=elementWithText('label','Filter By Date');
-
-	// let dateFilterCcheckboxID='swing-tx-left-checkbox-event-filter-date-'+Math.random();
-	// dateFilterCheckbox.setAttribute('id',dateFilterCcheckboxID);
-	// dateLabel.setAttribute('for',dateFilterCcheckboxID);
-
-	// dateFilterContainer.appendChild(dateFilterCheckbox);
-	// dateFilterContainer.appendChild(dateLabel);
-
-	// let hideExtraInputContainer=document.createElement('div');
-	// hideExtraInputContainer.classList.add('swingtx-left-container-for-hiding-options');
-
-
 	let startInput=document.createElement('input');
 	startInput.setAttribute('type','date');
 	startInput.setAttribute('placeholder','yyyy-mm-dd');
@@ -421,58 +381,7 @@ function writeFilterByDateControls(refilterFunc){
 }
 
 
-// function writeFilterResetControls(){
-	
-// 	let resetFilterContainer=document.getElementById('swingleftResetFilters');
 
-// 	resetFilterContainer.appendChild(document.createTextNode('Reset Filters: '));
-
-// 	let resetFilterButton=elementWithText('button','Show All');
-// 	resetFilterButton.addEventListener('click',resetFilters);
-// 	resetFilterContainer.appendChild(resetFilterButton);
-
-// }
-// function resetFilters(){
-// 	let selectedFiltersButtons=document.querySelectorAll('.eventFilterButtonSelected');
-// 	for(let b of selectedFiltersButtons){
-// 		b.classList.remove('eventFilterButtonSelected');
-// 	}
-// 	reAddCalanderWithFiltering();
-// }
-
-// function writeFilterByTagControls(swingtxleftEvents){
-// 	let tagFilterContainer=document.getElementById('swingleftTagOptions');
-// 	tagFilterContainer.appendChild(document.createTextNode('Filter by Tags: '));
-// 	let tagArray=[];
-
-
-// 	for(let e of swingtxleftEvents){
-// 		if(e.tags.length>0){
-// 			for(let t of e.tags){
-// 				if(!tagArray.some((el)=>{ return t.id === el.id})){
-// 					tagArray.push({id:t.id,name:t.name});
-// 				}
-// 			}
-// 		}
-// 	}
-
-
-// 	console.log(tagArray);
-
-	
-// 	for(let tag of tagArray){
-// 		let tagButton=elementWithText('button',tag.name);
-// 		tagButton.setAttribute('data-tag-id',tag.id);
-// 		tagButton.classList.add('tagFilterButton');
-// 		tagButton.addEventListener('click',filterButtonClick);
-
-// 		tagFilterContainer.appendChild(tagButton);
-// 	}
-
-
-// }
-
-// function getEventTagsAvailable(){}
 
 function filterButtonClick(ev){
 	if(ev.currentTarget.classList.contains('eventFilterButtonSelected')){
@@ -488,13 +397,6 @@ function filterButtonClick(ev){
 
 async function addHcdpCalender(swingtxleftEvents,eventsContainer){
 	
-	//document.getElementById('calInsert').innerText=JSON.stringify(theData);
-	
-	// console.log(swingtxleftEvents.filter(filterUpcomingEvents));
-	// document.getElementById('futureEvents').innerHTML='';
-	// writeEvents(swingtxleftEvents.filter(filterUpcomingEvents),document.getElementById('futureEvents'));
-	// document.getElementById('pastEvents').innerHTML='';
-	// writeEvents(swingtxleftEvents.filter(filterPastEvents).reverse(),document.getElementById('pastEvents'));
 	eventsContainer.innerHTML='';
 	writeEvents(swingtxleftEvents,eventsContainer);
 
@@ -638,19 +540,6 @@ function filterOnlySwingTXLeft(event,index,arr){
 	return false;
 }
 
-
-
-// function filterUpcomingEvents(event,index,arr){
-// 	return event.timeslots.some((time)=>{
-// 		return time.end_date>Math.floor(Date.now()/1000);
-// 	})
-// }
-
-// function filterPastEvents(event,index,arr){
-// 	return event.timeslots.some((time)=>{
-// 		return time.end_date<Math.floor(Date.now()/1000);
-// 	})
-// }
 
 function writeEvents(events,elementContainer){
 	let eventTimeSlots=splitEventsIntoTimeSlot(events);
@@ -969,23 +858,6 @@ function eventFieldHTML(fieldName,text){
 
 	return fieldContainer;
 }
-
-// function eventTimeSlotsHTML(timeslots){
-// 	let timeslotContainer=document.createElement('div');
-// 	let timeslotList=document.createElement('ul');
-
-// 	timeslotContainer.appendChild(timeslotList);
-
-// 	for(let t of timeslots){
-// 		let startDate=new Date(t.start_date*1000);
-		
-// 		let endDate=new Date(t.end_date*1000)
-// 		timeslotList.appendChild(elementWithText('li',startDate.toLocaleString()+' to '+endDate.toLocaleString()));
-
-// 	}
-
-// 	return timeslotContainer;
-// }
 
 function elementWithText(element,text){
 	let el=document.createElement(element);
