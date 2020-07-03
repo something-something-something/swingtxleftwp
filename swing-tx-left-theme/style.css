@@ -468,7 +468,8 @@ margin: 0;
 	border-radius: 0.5vmin;
 	box-shadow: 0 0 1vmin 0.5vmin var(--site-black) ;
 	transition: color 1s, border-color 1s;
-	margin:0 5vmin;
+	margin:0 2.5vmin;
+	display:inline-block;
 }
 .feature-img .other-buttons-widget .other-button:hover{
 	border-color: var(--logo-blue);
