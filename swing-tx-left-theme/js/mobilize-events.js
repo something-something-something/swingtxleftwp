@@ -874,6 +874,9 @@ function humanizeEventType(eventType,options={}){
 	if(eventType==='MEET_GREET'){
 		return 'Meet & Greet'
 	}
+	if(eventType==='VOTER_REG'){
+		return 'Voter Registration'
+	}
 	if(options.forForm&&eventType==='OTHER'){
 		return 'Other (includes literature drops)'
 	}
